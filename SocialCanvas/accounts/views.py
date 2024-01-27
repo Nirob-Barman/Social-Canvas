@@ -59,24 +59,14 @@ def activate(request, uid64, token):
         user.save()
         messages.success(
             request, "Your account has been activated. You can now log in.")
-        return redirect('login')
+        # return redirect('login')
+        # Redirect to the frontend login page
+        return redirect('http://localhost:5173/login')
     else:
         messages.error(request, "Invalid activation link.")
         return redirect('register')
 
-# def activate(request, uid64, token):
-#     try:
-#         uid = urlsafe_base64_decode(uid64).decode()
-#         user = User._default_manager.get(pk=uid)
-#     except (User.DoesNotExist):
-#         user = None
 
-#     if user is not None and default_token_generator.check_token(user, token):
-#         user.is_active = True
-#         user.save()
-#         return redirect('login')
-#     else:
-#         return redirect('register')
 
 class UserLoginApiView(APIView):
     def post(self, request):
