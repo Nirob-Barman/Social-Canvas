@@ -1,14 +1,15 @@
 from rest_framework import serializers
 from .models import UserDetails
 from django.contrib.auth.models import User
-from .constants import GENDER_TYPE
+from .constants import GENDER_TYPE, DIVISION_TYPE
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
     birth_date = serializers.DateField(write_only=True, input_formats=['%Y-%m-%d'], required=False)
     gender = serializers.ChoiceField(choices=GENDER_TYPE)
     profile_pic = serializers.ImageField(required=False)
-    confirm_password = serializers.CharField(write_only=True, required=True)
+    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
+    confirm_password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
 
     class Meta:
         model = User
@@ -49,3 +50,17 @@ class UserLoginSerializer(serializers.Serializer):
     # email = serializers.CharField(required=True)
     email = serializers.EmailField(required=True)
     password = serializers.CharField(required=True)
+
+
+class UpdateUserSerializer(serializers.ModelSerializer):
+    profile_pic = serializers.ImageField(required=False)
+    birth_date = serializers.DateField(write_only=True, input_formats=['%Y-%m-%d'], required=False)
+    gender = serializers.ChoiceField(choices=GENDER_TYPE)
+    division = serializers.ChoiceField(required=False, choices=DIVISION_TYPE)
+    district = serializers.CharField(required=False)
+    phone = serializers.CharField(required=False)
+
+
+    class Meta:
+        model = UserDetails
+        fields = ['profile_pic', 'birth_date', 'gender', 'division', 'district', 'phone']

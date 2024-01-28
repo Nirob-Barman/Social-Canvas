@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from . import serializers
+from . import models
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
 
 from django.shortcuts import redirect
 
@@ -21,6 +21,62 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.contrib import messages
 
+from rest_framework.permissions import IsAuthenticated
+
+from rest_framework.decorators import api_view, permission_classes
+
+class UserDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        user_details = {
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'birth_date': user.AbstractUserDetails.birth_date if hasattr(user, 'AbstractUserDetails') else None,
+            'gender': user.AbstractUserDetails.gender if hasattr(user, 'AbstractUserDetails') else None,
+            'division': user.AbstractUserDetails.division if hasattr(user, 'AbstractUserDetails') else None,
+            'district': user.AbstractUserDetails.district if hasattr(user, 'AbstractUserDetails') else None,
+            'phone': user.AbstractUserDetails.phone if hasattr(user, 'AbstractUserDetails') else None,
+            'profile_pic': str(user.AbstractUserDetails.profile_pic) if hasattr(user, 'AbstractUserDetails') and user.AbstractUserDetails.profile_pic else None,
+        }
+        return Response(user_details)
+
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def user_detail(request):
+#     user = request.user
+#     user_details = {
+#         'email': user.email,
+#         'first_name': user.first_name,
+#         'last_name': user.last_name,
+#         'birth_date': user.AbstractUserDetails.birth_date if hasattr(user, 'AbstractUserDetails') else None,
+#         'gender': user.AbstractUserDetails.gender if hasattr(user, 'AbstractUserDetails') else None,
+#         'division': user.AbstractUserDetails.division if hasattr(user, 'AbstractUserDetails') else None,
+#         'district': user.AbstractUserDetails.district if hasattr(user, 'AbstractUserDetails') else None,
+#         'phone': user.AbstractUserDetails.phone if hasattr(user, 'AbstractUserDetails') else None,
+#         'profile_pic': str(user.AbstractUserDetails.profile_pic) if hasattr(user, 'AbstractUserDetails') and user.AbstractUserDetails.profile_pic else None,
+#     }
+#     return Response(user_details)
+
+class UserDetailViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        user = self.request.user
+        user_details = {
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'birth_date': user.AbstractUserDetails.birth_date if hasattr(user, 'AbstractUserDetails') else None,
+            'gender': user.AbstractUserDetails.gender if hasattr(user, 'AbstractUserDetails') else None,
+            'division': user.AbstractUserDetails.division if hasattr(user, 'AbstractUserDetails') else None,
+            'district': user.AbstractUserDetails.district if hasattr(user, 'AbstractUserDetails') else None,
+            'phone': user.AbstractUserDetails.phone if hasattr(user, 'AbstractUserDetails') else None,
+            'profile_pic': str(user.AbstractUserDetails.profile_pic) if hasattr(user, 'AbstractUserDetails') and user.AbstractUserDetails.profile_pic else None,
+        }
+        return Response(user_details)
 
 class UserRegistration(APIView):
     serializer_class = serializers.RegistrationSerializer
@@ -94,3 +150,18 @@ class UserLogoutView(APIView):
         logout(request)
         return Response({'detail': 'Logout successful'}, status=status.HTTP_200_OK)
 
+class UpdateUserView(generics.UpdateAPIView):
+    serializer_class = serializers.UpdateUserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        # print(self.request.user)
+        # return self.request.user.AbstractUserDetails
+
+        user = self.request.user
+
+        # Check if UserDetails exists for the user, create if not
+        if not hasattr(user, 'AbstractUserDetails'):
+            models.UserDetails.objects.create(user=user)
+
+        return user.AbstractUserDetails

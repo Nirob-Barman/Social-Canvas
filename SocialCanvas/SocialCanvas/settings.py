@@ -30,8 +30,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Replace with the actual URL of your React frontend
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
 
 # CORS_ALLOWED_ORIGINS = [
@@ -52,6 +62,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'accounts',
+    'posts',
 ]
 
 INTERNAL_IPS = [
