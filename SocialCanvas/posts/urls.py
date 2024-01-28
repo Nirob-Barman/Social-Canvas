@@ -1,6 +1,10 @@
 from django.urls import path
 from .views import PostListView, PostDetailView, LikeView, CommentView, MyPostsView, AddPostView, UpdatePostView
 
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
 # app_name = 'posts'
 
 urlpatterns = [
@@ -12,3 +16,5 @@ urlpatterns = [
     path('add-post/', AddPostView.as_view(), name='add-post'),
     path('my-posts/update/<int:pk>', UpdatePostView.as_view(), name='update-post')
 ]
+
+urlpatterns += router.urls

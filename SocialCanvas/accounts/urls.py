@@ -4,7 +4,7 @@ from . import views
 
 router = DefaultRouter()
 
-router.register(r'user_detail_view', views.UserDetailViewSet,basename='user-detail')
+router.register(r'user_detail_view', views.UserDetailViewSet, basename='user-detail-view')
 
 urlpatterns = [
     path('register/', views.UserRegistration.as_view(), name='register'),
