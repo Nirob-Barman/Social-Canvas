@@ -103,6 +103,22 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+
+    const updateUser = (data) => {
+        setLoading(true);
+        return axios.put('http://127.0.0.1:8000/accounts/update/', data)
+            .then(response => {
+                console.log('User updated successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error updating user:', error);
+                throw error;
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }
+
     const authInfo = {
         user,
         loading,
@@ -110,7 +126,8 @@ const AuthProvider = ({ children }) => {
         signIn,
         googleSignIn,
         logOut,
-        updateUserProfile
+        updateUserProfile,
+        updateUser
     }
 
     return (

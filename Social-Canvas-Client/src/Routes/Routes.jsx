@@ -6,7 +6,7 @@ import Home from "../Pages/Home/Home/Home";
 import SignUp from "../Pages/SignUp/SignUp";
 import Login from "../Pages/Login/Login";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
-
+// import UpdateUserForm from "../Pages/UpdateUserForm/UpdateUserForm";
 
 export const router = createBrowserRouter([
     {
@@ -25,7 +25,11 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 element: <Login />
-            }
+            },
+            // {
+            //     path: 'updateProfile',
+            //     element: <UpdateUserForm />
+            // },
         ]
     },
 ]);
