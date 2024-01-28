@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
-import useAuth from '../../../Hooks/useAuth';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Link, Outlet } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
 
-const NavBar = () => {
+const Dashboard = () => {
 
     const { user, logOut } = useAuth();
-
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -16,16 +17,9 @@ const NavBar = () => {
     const navOptions = (
         <ul className="flex items-center">
             <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>
-            <li><Link to="/TimeLine" className="text-white hover:text-gray-300">TimeLine</Link></li>
-
-            {user && (
-                <div className='flex items-center'>
-                    <button className="bg-blue-500 text-white py-1 px-2 rounded">Hello</button>
-                </div>
-            )}
-
+            <li><Link to="/posts/myPosts" className="text-white hover:text-gray-300">My Posts</Link></li>
             {user ? (
-                <li onClick={handleLogOut}><Link to="/" className="text-white hover:text-gray-300">LogOut</Link></li>
+                <li onClick={handleLogOut}><Link className="text-white hover:text-gray-300">LogOut</Link></li>
             ) : (
                 <li><Link to="/login" className="text-white hover:text-gray-300">Login</Link></li>
             )}
@@ -34,6 +28,10 @@ const NavBar = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Phi Book | DashBoard</title>
+            </Helmet>
+
             <div className="navbar bg-opacity-30 bg-black text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -56,13 +54,18 @@ const NavBar = () => {
                         {navOptions}
                     </ul>
                 </div>
-
                 <div className="navbar-end">
-                    {user && <Link to='posts' className="text-white hover:text-gray-300">DashBoard</Link>}
+                    {user && <Link to='' className="text-white hover:text-gray-300">Dashboard</Link>}
                 </div>
+            </div>
+
+            <h1>DashBoard</h1>
+
+            <div>
+                <Outlet></Outlet>
             </div>
         </div>
     );
 };
 
-export default NavBar;
+export default Dashboard;
