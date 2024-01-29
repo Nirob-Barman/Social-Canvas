@@ -21,11 +21,16 @@ function getCookie(name) {
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [token, setToken] = useState('');
-    const [csrf, setCsrf] = useState('');
+    // const [token, setToken] = useState('');
+    // const [csrf, setCsrf] = useState('');
+
+    const [sessionid, setSessionId] = useState('');
+    const [csrfToken, setCsrfToken] = useState('');
     
 
-    console.log("token from AuthProvider when user changes: ", token);
+    // console.log("token from AuthProvider when user changes: ", token);
+    console.log("csrf from AuthProvider when user changes: ", csrfToken);
+    console.log("sessionid from AuthProvider when user changes: ", sessionid);
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -61,6 +66,16 @@ const AuthProvider = ({ children }) => {
 
                 // Delete the token from local storage
                 // localStorage.removeItem('sessionid');
+                
+                // // Clear the csrf and token from state
+                // setCsrf('');
+                // setToken('');
+
+                // Delete CSRF cookie
+                document.cookie = 'csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                // Delete token cookie
+                document.cookie = 'sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                 
                 return signOut(auth);
             })
@@ -119,13 +134,18 @@ const AuthProvider = ({ children }) => {
 
             // Check local storage for the token
             // const storedToken = localStorage.getItem('sessionid');
-            const storedToken = getCookie('sessionid');
-            const storedCSRF = getCookie('csrftoken');
-            if (storedToken) {
-                // console.log('Token from local storage:', storedToken);
-                setToken(storedToken);
-                setCsrf(storedCSRF);
-            }
+
+            const storedSessionId = getCookie('sessionid');
+            const storedCsrfToken = getCookie('csrftoken');
+
+            setSessionId(storedSessionId);
+            setCsrfToken(storedCsrfToken);
+
+            // if (sessionid) {
+            //     // console.log('Token from local storage:', storedToken);
+            //     setToken(storedToken);
+            //     setCsrf(storedCSRF);
+            // }
 
             setLoading(false);
         })
@@ -160,10 +180,14 @@ const AuthProvider = ({ children }) => {
         logOut,
         updateUserProfile,
         updateUser,
-        token,
-        setToken,
-        csrf,
-        setCsrf
+        // token,
+        // setToken,
+        // csrf,
+        // setCsrf
+        sessionid,
+        setSessionId,
+        csrfToken,
+        setCsrfToken
     }
 
     return (

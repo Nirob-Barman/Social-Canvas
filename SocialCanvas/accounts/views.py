@@ -159,7 +159,6 @@ class UserLoginApiView(APIView):
             print('Login successful')
             print(f"User: {user}")
 
-
             # Get CSRF token
             csrf_token = get_token(request)
             # Get session ID
