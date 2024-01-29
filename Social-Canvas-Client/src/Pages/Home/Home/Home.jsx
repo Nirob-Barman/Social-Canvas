@@ -2,16 +2,17 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../../Hooks/useAuth";
 
 const Home = () => {
-    const { user } = useAuth();
+    const { user, token } = useAuth();
     
-    print('User: ', user?.email)
+    console.log("User: ", user)
+    console.log("Token: ", token)
 
     return (
         <div>
             <Helmet>
                 <title>Phi Book | Home</title>
             </Helmet>
-            Hello {user?.email}
+            Hello {user?.email} with {token}
         </div>
     );
 };

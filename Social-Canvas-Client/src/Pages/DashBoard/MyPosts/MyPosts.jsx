@@ -5,15 +5,30 @@ import useAuth from '../../../Hooks/useAuth';
 const MyPosts = () => {
     const [posts, setPosts] = useState([]);
     console.log(posts)
-    const { user } = useAuth();
-    console.log(user.email)
+    const { token } = useAuth();
+    console.log('token from MyPosts: ', token)
+
+    // useEffect(() => {
+    //     // Fetch the user's posts from the Django API
+    //     axios.get('http://127.0.0.1:8000/posts/my-posts/')
+    //         .then(response => setPosts(response.data))
+    //         .catch(error => console.error('Error fetching posts:', error));
+    // }, []);
+
 
     useEffect(() => {
-        // Fetch the user's posts from the Django API
-        axios.get('http://127.0.0.1:8000/posts/my-posts/')
-            .then(response => setPosts(response.data))
-            .catch(error => console.error('Error fetching posts:', error));
-    }, []);
+        // Check if token exists before making the request
+        if (token) {
+            // Fetch the user's posts from the Django API with the Authorization header
+            axios.get('http://127.0.0.1:8000/posts/my-posts/', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then(response => setPosts(response.data))
+                .catch(error => console.error('Error fetching posts:', error));
+        }
+    }, [token]);
 
 
     return (

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, getIdToken } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../Firebase/firebase.config";
 import axios from 'axios';
 
@@ -10,6 +10,10 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [token, setToken] = useState('');
+    
+
+    console.log("token from AuthProvider when user changes: ", token);
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -42,6 +46,10 @@ const AuthProvider = ({ children }) => {
             .then(() => {
                 // After successful logout from the backend, also sign out from Firebase
                 console.log('Logged out successfully');
+
+                // Delete the token from local storage
+                localStorage.removeItem('access-token');
+                
                 return signOut(auth);
             })
             .catch(error => {
@@ -89,12 +97,21 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             // console.log('logged in user inside auth state observer', loggedUser)
+            // console.log("Token from auth provider after login: ", token);
             if (loggedUser === null) {
                 console.log('No User');
             } else {
                 console.log('Logged in user');
             }
             setUser(loggedUser);
+
+            // Check local storage for the token
+            const storedToken = localStorage.getItem('access-token');
+            if (storedToken) {
+                // console.log('Token from local storage:', storedToken);
+                setToken(storedToken);
+            }
+
             setLoading(false);
         })
 
@@ -103,7 +120,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-
+    
     const updateUser = (data) => {
         setLoading(true);
         return axios.put('http://127.0.0.1:8000/accounts/update/', data)
@@ -128,6 +145,8 @@ const AuthProvider = ({ children }) => {
         logOut,
         updateUserProfile,
         updateUser,
+        token,
+        setToken,
     }
 
     return (

@@ -4,8 +4,10 @@ import { Link, Outlet } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 
 const Dashboard = () => {
+    const { user, logOut, token } = useAuth();
+    console.log('token from Dashboard: ', token);
+    
 
-    const { user, logOut } = useAuth();
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -59,7 +61,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <h1>DashBoard</h1>
+            <h1>DashBoard {token}</h1>
 
             <div>
                 <Outlet></Outlet>
