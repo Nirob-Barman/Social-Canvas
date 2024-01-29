@@ -24,9 +24,18 @@ from django.contrib import messages
 from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.decorators import api_view, permission_classes
+from django.contrib.sites.shortcuts import get_current_site
+
+from rest_framework.permissions import AllowAny
+from rest_framework.authentication import TokenAuthentication
+
+
+from django.middleware.csrf import get_token
+from django.contrib.sessions.models import Session
+
 
 class UserDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         user = request.user
@@ -86,9 +95,13 @@ class UserRegistration(APIView):
         if serializer.is_valid():
             user = serializer.save()
 
+            # Generate activation link with the correct domain
+            current_site = get_current_site(request)
+
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            confirm_link = f'http://127.0.0.1:8000/accounts/activate/{uid}/{token}/'
+            # confirm_link = f'http://127.0.0.1:8000/accounts/activate/{uid}/{token}/'
+            confirm_link = f'http://{current_site.domain}/accounts/activate/{uid}/{token}/'
 
             email_subject = 'Confirm your email'
             email_body = render_to_string(
@@ -125,6 +138,9 @@ def activate(request, uid64, token):
 
 
 class UserLoginApiView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = serializers.UserLoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -134,11 +150,24 @@ class UserLoginApiView(APIView):
 
         user = User.objects.filter(email=email).first()
         print(f"User: {user}")
-
+        
         if user and user.check_password(password):
             token, _ = Token.objects.get_or_create(user=user)
             login(request, user)
-            return Response({'token': token.key, 'email': user.email, 'user_id': user.id}, status=status.HTTP_200_OK)
+            print(f"Token: {token}")
+            print(f"Token key: {token.key}")
+            print('Login successful')
+            print(f"User: {user}")
+
+
+            # Get CSRF token
+            csrf_token = get_token(request)
+            # Get session ID
+            session_id = request.session.session_key
+            print('csrf_token', csrf_token)
+            print("session_id", session_id)
+
+            return Response({'token': token.key, 'email': user.email, 'user_id': user.id, 'csrf_token': csrf_token, 'session_id': session_id}, status=status.HTTP_200_OK)
         else:
             return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 

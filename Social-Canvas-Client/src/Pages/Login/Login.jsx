@@ -23,12 +23,18 @@ const Login = () => {
             const response = await axios.post('http://127.0.0.1:8000/accounts/login/', data);
 
             // Handle the response as needed
-            // console.log('Login successful:', response.data);
+            console.log('Login successful:', response.data);
             console.log('Token: ', response.data.token);
             // setToken(response.data.token);
             // console.log('Token after setToken: ', token);
 
-            localStorage.setItem('access-token', response.data.token);
+            // localStorage.setItem('sessionid', response.data.token);
+            document.cookie = 'csrftoken=' + response.data.csrf_token
+            document.cookie = "sessionid=" + response.data.session_id
+            
+            console.log('csrftoken', response.data.csrf_token)
+            console.log('sessionid', response.data.session_id)
+
 
             // You may want to redirect or perform other actions after successful login
             navigate(from, { replace: true });

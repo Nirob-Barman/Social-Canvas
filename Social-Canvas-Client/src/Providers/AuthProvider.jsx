@@ -7,10 +7,22 @@ export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
 
+function getCookie(name) {
+    var cookieArr = document.cookie.split(';');
+    for (var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split('=');
+        if (name === cookiePair[0].trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    return null;
+}
+
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useState('');
+    const [csrf, setCsrf] = useState('');
     
 
     console.log("token from AuthProvider when user changes: ", token);
@@ -48,7 +60,7 @@ const AuthProvider = ({ children }) => {
                 console.log('Logged out successfully');
 
                 // Delete the token from local storage
-                localStorage.removeItem('access-token');
+                // localStorage.removeItem('sessionid');
                 
                 return signOut(auth);
             })
@@ -106,10 +118,13 @@ const AuthProvider = ({ children }) => {
             setUser(loggedUser);
 
             // Check local storage for the token
-            const storedToken = localStorage.getItem('access-token');
+            // const storedToken = localStorage.getItem('sessionid');
+            const storedToken = getCookie('sessionid');
+            const storedCSRF = getCookie('csrftoken');
             if (storedToken) {
                 // console.log('Token from local storage:', storedToken);
                 setToken(storedToken);
+                setCsrf(storedCSRF);
             }
 
             setLoading(false);
@@ -147,6 +162,8 @@ const AuthProvider = ({ children }) => {
         updateUser,
         token,
         setToken,
+        csrf,
+        setCsrf
     }
 
     return (
