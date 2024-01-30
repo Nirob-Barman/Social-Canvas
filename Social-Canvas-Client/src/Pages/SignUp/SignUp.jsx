@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import useAuth from '../../Hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 
+const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
+
 const SignUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const { createUser } = useAuth();
     const navigate = useNavigate();
+    
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+
+    // Add a state to store the uploaded image URL
+    const [imageUrl, setImageUrl] = useState('');
+
+
+    // Function to handle image upload to ImgBB
+    const handleImageUpload = async (e) => {
+        try {
+            const formData = new FormData();
+            formData.append('image', e.target.files[0]);
+
+            // Upload the image to ImgBB server
+            const response = await axios.post(img_hosting_url, formData);
+
+            // Get the image URL from the response and set it in the state
+            if (response.data && response.data.data && response.data.data.url) {
+                setImageUrl(response.data.data.url);
+            }
+        } catch (error) {
+            console.error('Failed to upload image:', error);
+        }
+    };
 
     const onSubmit = async (data) => {
         try {
@@ -30,14 +56,17 @@ const SignUp = () => {
                 birth_date: data.birth_date,
                 gender: data.gender,
                 // profile_pic: data.profile_pic,
+                // profile_pic: imageUrl,
             };
 
             // Make a POST request to your Django backend
             // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', data);
             const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData);
+            console.log('postData', postData)
 
             // Handle the response as needed
             console.log('Form submitted:', response.data);
+            console.log('response', response)
             console.log(response)
 
             navigate('/login');
@@ -55,7 +84,7 @@ const SignUp = () => {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded shadow-md w-3/4">
                 <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
                     <div className="mb-4">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-600">
                             Username
@@ -186,6 +215,7 @@ const SignUp = () => {
                             type="file"
                             id="profile_pic"
                             {...register('profile_pic')}
+                            // onChange={handleImageUpload}  // Handle image upload
                             className={`mt-1 p-2 w-full border rounded ${errors.profile_pic ? 'border-red-500' : ''}`}
                         />
                         {errors.profile_pic && <p className="text-red-500 text-xs mt-1">{errors.profile_pic.message}</p>}

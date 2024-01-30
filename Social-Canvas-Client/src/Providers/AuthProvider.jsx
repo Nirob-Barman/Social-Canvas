@@ -7,16 +7,16 @@ export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
 
-function getCookie(name) {
-    var cookieArr = document.cookie.split(';');
-    for (var i = 0; i < cookieArr.length; i++) {
-        var cookiePair = cookieArr[i].split('=');
-        if (name === cookiePair[0].trim()) {
-            return decodeURIComponent(cookiePair[1]);
-        }
-    }
-    return null;
-}
+// function getCookie(name) {
+//     var cookieArr = document.cookie.split(';');
+//     for (var i = 0; i < cookieArr.length; i++) {
+//         var cookiePair = cookieArr[i].split('=');
+//         if (name === cookiePair[0].trim()) {
+//             return decodeURIComponent(cookiePair[1]);
+//         }
+//     }
+//     return null;
+// }
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -24,13 +24,13 @@ const AuthProvider = ({ children }) => {
     // const [token, setToken] = useState('');
     // const [csrf, setCsrf] = useState('');
 
-    const [sessionid, setSessionId] = useState('');
-    const [csrfToken, setCsrfToken] = useState('');
+    // const [sessionid, setSessionId] = useState('');
+    // const [csrfToken, setCsrfToken] = useState('');
     
 
     // console.log("token from AuthProvider when user changes: ", token);
-    console.log("csrf from AuthProvider when user changes: ", csrfToken);
-    console.log("sessionid from AuthProvider when user changes: ", sessionid);
+    // console.log("csrf from AuthProvider when user changes: ", csrfToken);
+    // console.log("sessionid from AuthProvider when user changes: ", sessionid);
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -72,10 +72,10 @@ const AuthProvider = ({ children }) => {
                 // setToken('');
 
                 // Delete CSRF cookie
-                document.cookie = 'csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                // document.cookie = 'csrftoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
                 // Delete token cookie
-                document.cookie = 'sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                // document.cookie = 'sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                 
                 return signOut(auth);
             })
@@ -135,11 +135,11 @@ const AuthProvider = ({ children }) => {
             // Check local storage for the token
             // const storedToken = localStorage.getItem('sessionid');
 
-            const storedSessionId = getCookie('sessionid');
-            const storedCsrfToken = getCookie('csrftoken');
+            // const storedSessionId = getCookie('sessionid');
+            // const storedCsrfToken = getCookie('csrftoken');
 
-            setSessionId(storedSessionId);
-            setCsrfToken(storedCsrfToken);
+            // setSessionId(storedSessionId);
+            // setCsrfToken(storedCsrfToken);
 
             // if (sessionid) {
             //     // console.log('Token from local storage:', storedToken);
@@ -184,10 +184,10 @@ const AuthProvider = ({ children }) => {
         // setToken,
         // csrf,
         // setCsrf
-        sessionid,
-        setSessionId,
-        csrfToken,
-        setCsrfToken
+        // sessionid,
+        // setSessionId,
+        // csrfToken,
+        // setCsrfToken
     }
 
     return (

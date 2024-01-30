@@ -5,8 +5,9 @@ import useAuth from '../../../Hooks/useAuth';
 const MyPosts = () => {
     const [posts, setPosts] = useState([]);
     console.log(posts)
-    const { token } = useAuth();
-    console.log('token from MyPosts: ', token)
+    const { sessionid, csrfToken } = useAuth();
+    console.log('sessionid from Dashboard: ', sessionid);
+    console.log('csrfToken from Dashboard: ', csrfToken);
 
     useEffect(() => {
         // Fetch the user's posts from the Django API

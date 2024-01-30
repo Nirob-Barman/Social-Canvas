@@ -10,7 +10,7 @@ import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import MyPosts from "../Pages/DashBoard/MyPosts/MyPosts";
 import UserDetail from "../Pages/DashBoard/UserDetail/UserDetail";
-// import UpdateUserForm from "../Pages/UpdateUserForm/UpdateUserForm";
+import UpdateUserForm from "../Pages/UpdateUserForm/UpdateUserForm";
 
 export const router = createBrowserRouter([
     {
@@ -33,11 +33,11 @@ export const router = createBrowserRouter([
             {
                 path: 'details',
                 element: <UserDetail />
-            }
-            // {
-            //     path: 'updateProfile',
-            //     element: <UpdateUserForm />
-            // },
+            },
+            {
+                path: 'updateProfile',
+                element: <UpdateUserForm />
+            },
         ]
     },
     {

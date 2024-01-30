@@ -29,8 +29,8 @@ const Login = () => {
             // console.log('Token after setToken: ', token);
 
             // localStorage.setItem('sessionid', response.data.token);
-            document.cookie = 'csrftoken=' + response.data.csrf_token
-            document.cookie = "sessionid=" + response.data.session_id
+            // document.cookie = 'csrftoken=' + response.data.csrf_token
+            // document.cookie = "sessionid=" + response.data.session_id
             
             console.log('csrftoken', response.data.csrf_token)
             console.log('sessionid', response.data.session_id)
