@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
-        <div className="flex flex-col">
+        <div>
 
             {/* Footer */}
             <footer className="mt-10 bg-gray-800 text-white">

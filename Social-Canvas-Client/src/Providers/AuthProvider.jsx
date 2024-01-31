@@ -63,7 +63,9 @@ const AuthProvider = ({ children }) => {
             .then(() => {
                 // After successful logout from the backend, also sign out from Firebase
                 console.log('Logged out successfully');
-
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('user_id');
+                
                 // Delete the token from local storage
                 // localStorage.removeItem('sessionid');
                 

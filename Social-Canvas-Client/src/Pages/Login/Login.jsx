@@ -25,6 +25,7 @@ const Login = () => {
             // Handle the response as needed
             console.log('Login successful:', response.data);
             console.log('Token: ', response.data.token);
+            localStorage.setItem("access-token", response.data.token);
             // setToken(response.data.token);
             // console.log('Token after setToken: ', token);
 
@@ -32,8 +33,8 @@ const Login = () => {
             // document.cookie = 'csrftoken=' + response.data.csrf_token
             // document.cookie = "sessionid=" + response.data.session_id
             
-            console.log('csrftoken', response.data.csrf_token)
-            console.log('sessionid', response.data.session_id)
+            // console.log('csrftoken', response.data.csrf_token)
+            // console.log('sessionid', response.data.session_id)
 
 
             // You may want to redirect or perform other actions after successful login
