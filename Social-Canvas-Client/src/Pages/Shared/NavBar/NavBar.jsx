@@ -16,7 +16,6 @@ const NavBar = () => {
     const navOptions = (
         <ul className="flex items-center">
             <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>
-            <li><Link to="/TimeLine" className="text-white hover:text-gray-300">TimeLine</Link></li>
 
             {user && (
                 <div className='flex items-center'>

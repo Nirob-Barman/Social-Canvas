@@ -1,30 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import EditPostModal from './EditPostModal/EditPostModal';
 
 const MyPosts = () => {
     const [posts, setPosts] = useState([]);
-    console.log(posts)
-
-    // useEffect(() => {
-    //     // Fetch the user's posts from the Django API
-        
-    //     axios.get('http://127.0.0.1:8000/posts/my-posts/')
-    //         .then(response => {
-    //             console.log(response.data)
-    //             setPosts(response.data)
-    //         })
-    //         .catch(error => console.error('Error fetching posts:', error));
-    // }, []);
+    const [selectedPost, setSelectedPost] = useState(null);
 
     useEffect(() => {
         // Check if token exists before making the request
         const token = localStorage.getItem('access-token');
-        console.log('Token from local storage: ', token);
         if (token) {
             // Fetch the user's posts from the Django API with the Authorization header
             axios.get('http://127.0.0.1:8000/posts/my-posts/', {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Token ${token}`,
                 },
             })
                 .then(response => setPosts(response.data))
@@ -32,33 +21,78 @@ const MyPosts = () => {
         }
     }, []);
 
+    // const openEditModal = (postId) => {
+    //     const token = localStorage.getItem('access-token');
+    //     if (token) {
+    //         axios.get(`http://127.0.0.1:8000/posts/my-posts/update/${postId}`, {
+    //             headers: {
+    //                 Authorization: `Token ${token}`,
+    //             },
+    //         })
+    //             .then(response => {
+    //                 setSelectedPost(response.data);
+    //                 document.getElementById('my_modal_3').showModal();
+    //             })
+    //             .catch(error => console.error('Error fetching post data:', error));
+    //     }
+    // };
+
+    // const closeEditModal = () => {
+    //     setSelectedPost(null);
+    //     document.getElementById('my_modal_3').close();
+    // };
+
+    const openEditModal = (postId) => {
+        setSelectedPost({ id: postId });
+        document.getElementById('my_modal_3').showModal();
+    };
+
+    const closeEditModal = () => {
+        setSelectedPost(null);
+        document.getElementById('my_modal_3').close();
+    };
+
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">My Posts</h1>
+            <h1 className="text-3xl font-bold mb-4 text-center">My Posts</h1>
 
-            <table className="min-w-full bg-white border border-gray-300">
-                <thead>
-                    <tr className="bg-gray-100">
-                        <th className="py-2 px-4 border-b">Content</th>
-                        <th className="py-2 px-4 border-b">Created At</th>
-                        <th className="py-2 px-4 border-b">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {posts.map(post => (
-                        <tr key={post.id}>
-                            <td className="py-2 px-4 border-b">{post.content}</td>
-                            <td className="py-2 px-4 border-b">{post.created_at}</td>
-                            <td className="py-2 px-4 border-b">
-                                {/* You can add more buttons or actions here */}
-                                <button className="text-sm bg-blue-500 text-white py-1 px-2 rounded mr-2">Edit</button>
-                                <button className="text-sm bg-red-500 text-white py-1 px-2 rounded">Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            {posts.map(post => (
+                <div key={post.id} className="bg-white rounded-md shadow-md mb-4 p-4">
+                    <p className="text-lg font-semibold mb-2">{post.content}</p>
+                    {/* <p>Created At: {post.created_at}</p> */}
+                    {/* <p>Updated At: {post.updated_at}</p> */}
+                    <p>Like Count: {post.like_count}</p>
+                    <p>Comment Count: {post.comment_count}</p>
+                    {post.image && (
+                        <img src={post.image} alt="Post Image" className="mt-2 rounded-md" />
+                    )}
+                    {post.video_url && (
+                        <iframe
+                            title={`Video for Post ${post.id}`}
+                            width="100%"
+                            height="315"
+                            src={post.video_url}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="mt-2 rounded-md"
+                        ></iframe>
+                    )}
+                    <div className="flex mt-2">
+                        <button
+                            onClick={() => openEditModal(post.id)}
+                            className="text-sm bg-blue-500 text-white py-1 px-2 rounded mr-2">Edit</button>
+                        <button className="text-sm bg-red-500 text-white py-1 px-2 rounded">Delete</button>
+                    </div>
+                </div>
+            ))}
+
+
+            <div>
+                <EditPostModal selectedPost={selectedPost} closeModal={closeEditModal} />
+            </div>
+
         </div>
     );
 };

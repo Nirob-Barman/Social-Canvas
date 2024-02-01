@@ -4,7 +4,6 @@ import useAuth from "../../../Hooks/useAuth";
 const Home = () => {
     const { user} = useAuth();
     
-    console.log("User: ", user)
 
     return (
         <div>

@@ -11,6 +11,8 @@ import PrivateRoute from "./PrivateRoute";
 import MyPosts from "../Pages/DashBoard/MyPosts/MyPosts";
 import UserDetail from "../Pages/DashBoard/UserDetail/UserDetail";
 import UpdateUserForm from "../Pages/UpdateUserForm/UpdateUserForm";
+import AllPosts from "../Pages/DashBoard/AllPosts/AllPosts";
+import DashBoardPage from "../Pages/DashBoard/DashBoardPage/DashBoardPage";
 
 export const router = createBrowserRouter([
     {
@@ -45,8 +47,16 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
+                path: '/posts',
+                element: <DashBoardPage />
+            },
+            {
                 path: 'myPosts',
                 element: <MyPosts />
+            },
+            {
+                path: 'allPosts',
+                element: <AllPosts />
             }
         ]
     }
