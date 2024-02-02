@@ -52,6 +52,30 @@ const MyPosts = () => {
         document.getElementById('my_modal_3').close();
     };
 
+    const handleDeletePost = async (postId) => {
+        const token = localStorage.getItem('access-token');
+        if (token) {
+            try {
+                const response = await axios.delete(`http://127.0.0.1:8000/posts/my-posts/delete/${postId}`, {
+                    headers: { Authorization: `Token ${token}` },
+                });
+
+                if (response.status === 204) {
+                    // Post deleted successfully
+                    const updatedPosts = posts.filter((post) => post.id !== postId);
+                    setPosts(updatedPosts);
+                } else {
+                    // Handle deletion error
+                    console.error('Error deleting post:', response.data);
+                    // Consider displaying an error message to the user
+                }
+            } catch (error) {
+                console.error('Error deleting post:', error);
+                // Consider displaying an error message to the user
+            }
+        }
+    };
+
 
     return (
         <div className="container mx-auto p-4">
@@ -83,7 +107,9 @@ const MyPosts = () => {
                         <button
                             onClick={() => openEditModal(post.id)}
                             className="text-sm bg-blue-500 text-white py-1 px-2 rounded mr-2">Edit</button>
-                        <button className="text-sm bg-red-500 text-white py-1 px-2 rounded">Delete</button>
+                        <button
+                            onClick={() => handleDeletePost(post.id)}
+                            className="text-sm bg-red-500 text-white py-1 px-2 rounded">Delete</button>
                     </div>
                 </div>
             ))}

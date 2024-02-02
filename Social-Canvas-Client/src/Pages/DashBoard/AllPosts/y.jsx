@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const AllPosts = () => {
+
     const [posts, setPosts] = useState([]);
+    console.log(posts);
+
     const token = localStorage.getItem('access-token');
+
 
     const handleLike = async (postId) => {
         try {
-            console.log(postId);
             // Check if the user has already liked the post
             const existingLike = posts.find(post => post.id === postId && post.user_has_liked);
-            console.log(existingLike);
 
             if (existingLike) {
                 // If the user has already liked the post, unlike it
@@ -39,6 +41,7 @@ const AllPosts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // const response = await fetch('http://127.0.0.1:8000/posts/list/', {
                 const response = await fetch('http://127.0.0.1:8000/posts/all_posts/', {
                     headers: {
                         Authorization: `Token ${token}`,
@@ -57,8 +60,7 @@ const AllPosts = () => {
         };
 
         fetchData();
-    }, [token]);
-
+    }, []); // Empty dependency array means this effect runs once after the initial render
     return (
         <div>
             <div className="flex items-center justify-center">
@@ -79,6 +81,7 @@ const AllPosts = () => {
                     </ul>
                 </div>
             </div>
+
         </div>
     );
 };

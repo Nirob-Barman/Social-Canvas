@@ -62,6 +62,9 @@ const SignUp = () => {
             // Make a POST request to your Django backend
             // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', data);
             const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData);
+            // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', {
+            //     'content-type': 'multipart/form-data',
+            // });
             console.log('postData', postData)
 
             // Handle the response as needed

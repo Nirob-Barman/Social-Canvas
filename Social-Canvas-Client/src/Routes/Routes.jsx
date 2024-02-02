@@ -13,6 +13,7 @@ import UserDetail from "../Pages/DashBoard/UserDetail/UserDetail";
 import UpdateUserForm from "../Pages/UpdateUserForm/UpdateUserForm";
 import AllPosts from "../Pages/DashBoard/AllPosts/AllPosts";
 import DashBoardPage from "../Pages/DashBoard/DashBoardPage/DashBoardPage";
+import AddPost from "../Pages/DashBoard/AddPost/AddPost";
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path: '/posts',
                 element: <DashBoardPage />
+            },
+            {
+                path: 'add',
+                element: <AddPost />
             },
             {
                 path: 'myPosts',
