@@ -23,9 +23,10 @@ const UpdateUserForm = () => {
         })  // Replace with your API endpoint
             .then(response => {
                 const user = response.data;  // Assuming your API returns user details
+                console.log(user);
                 // setValue('profile_pic', user.profile_pic);
                 setValue('birth_date', user.birth_date);
-                // setStartDate(new Date(user.birth_date));
+                setStartDate(new Date(user.birth_date));
                 setValue('gender', user.gender);
                 setValue('division', user.division);
                 setValue('district', user.district);
@@ -38,14 +39,16 @@ const UpdateUserForm = () => {
 
     const onSubmit = async (data) => {
         try {
+            const formattedDate = startDate ? startDate.toISOString().split('T')[0] : null;
+            data.birth_date = formattedDate;
+            
             console.log(data);
-            // await axios.put('http://127.0.0.1:8000/accounts/update/', data);
+
             // await axios.put('http://127.0.0.1:8000/accounts/update/', data);
             await axios.put('http://127.0.0.1:8000/accounts/update/', data, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },
-                // data: data
             });
             // Handle successful update, e.g., show a success message
             navigate('/details');
@@ -61,9 +64,9 @@ const UpdateUserForm = () => {
             {/* <label className="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
             <input type="file" {...register('profile_pic')} className="form-select mb-4 border rounded-md p-2" /> */}
 
-            {/* <label className="block text-sm font-medium text-gray-700 mb-1">Birth Date</label> */}
+            <label className="block text-sm font-medium text-gray-700 mb-1">Birth Date</label>
             {/* <input type="text" {...register('birth_date')} className="form-select mb-4 border rounded-md p-2" /> */}
-            {/* <DatePicker
+            <DatePicker
                 {...register('birth_date')}
                 selected={startDate}
                 onChange={(date) => {
@@ -71,7 +74,7 @@ const UpdateUserForm = () => {
                     setValue('birth_date', date);
                 }}
                 className="form-select mb-4 border rounded-md p-2"
-            /> */}
+            />
 
             <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
             <select {...register('gender')} className="form-select mb-4 border rounded-md p-2">

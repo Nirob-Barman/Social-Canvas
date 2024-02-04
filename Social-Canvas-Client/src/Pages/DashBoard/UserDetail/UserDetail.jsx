@@ -1,28 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const UserDetail = () => {
     const [userData, setUserData] = useState(null);
     const token = localStorage.getItem('access-token');
-
-    // useEffect(() => {
-    //     const fetchUserDetails = async () => {
-    //         try {
-    //             const response = await axios.get('http://127.0.0.1:8000/posts/list/');
-    //             // const response = await axios.get('http://127.0.0.1:8000/posts/list/', {
-    //             //     headers: {
-    //             //         Authorization: `Bearer ${token}`,
-    //             //     },
-    //             // });
-    //             console.log('All Post:', response.data);
-    //             setUserData(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching user details:', error);
-    //         }
-    //     };
-
-    //     fetchUserDetails();
-    // }, []);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -46,7 +28,10 @@ const UserDetail = () => {
 
     return (
         <div className="container mx-auto mt-8 p-4 bg-gray-100 rounded shadow-md">
-            <h2 className="text-2xl font-bold mb-4">User Details</h2>
+            <div className="flex justify-between">
+                <h2 className="text-2xl font-bold mb-4">User Details</h2>
+                <Link to={'/updateProfile'}><h3 className="text-2xl font-bold mb-4">Update Profile</h3></Link>
+            </div>
 
             {userData ? (
                 <div className="grid grid-cols-2 gap-4">
