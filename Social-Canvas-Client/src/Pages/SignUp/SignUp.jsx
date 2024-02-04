@@ -8,9 +8,9 @@ const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
 const SignUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const { createUser } = useAuth();
+    const { createUser, logOutAfterSignUp } = useAuth();
     const navigate = useNavigate();
-    
+
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
     // Add a state to store the uploaded image URL
@@ -62,16 +62,19 @@ const SignUp = () => {
             // Make a POST request to your Django backend
             // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', data);
             const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData);
+
             // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', {
-            //     'content-type': 'multipart/form-data',
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data',
+            //     },
             // });
+
             console.log('postData', postData)
 
             // Handle the response as needed
-            console.log('Form submitted:', response.data);
-            console.log('response', response)
-            console.log(response)
+            console.log('Form submitted Response:', response.data);
 
+            logOutAfterSignUp();
             navigate('/login');
 
             // You may want to redirect or perform other actions after successful submission
@@ -218,7 +221,7 @@ const SignUp = () => {
                             type="file"
                             id="profile_pic"
                             {...register('profile_pic')}
-                            // onChange={handleImageUpload}  // Handle image upload
+                            onChange={handleImageUpload}  // Handle image upload
                             className={`mt-1 p-2 w-full border rounded ${errors.profile_pic ? 'border-red-500' : ''}`}
                         />
                         {errors.profile_pic && <p className="text-red-500 text-xs mt-1">{errors.profile_pic.message}</p>}

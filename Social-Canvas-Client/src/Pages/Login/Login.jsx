@@ -14,18 +14,20 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         try {
-            console.log(data);
+            // console.log(data);
             const result = await signIn(data.email, data.password);
-            console.log(result);
+            // console.log(result);
             // console.log("Login successful", result.user);
             // console.log("token from onSubmit: ", token);
             // Make a POST request to your Django backend for login
             const response = await axios.post('http://127.0.0.1:8000/accounts/login/', data);
 
             // Handle the response as needed
-            console.log('Login successful:', response.data);
-            console.log('Token: ', response.data.token);
+            // console.log('Login successful:', response.data);
+            // console.log('Token: ', response.data.token);
+            
             localStorage.setItem("access-token", response.data.token);
+
             // setToken(response.data.token);
             // console.log('Token after setToken: ', token);
 

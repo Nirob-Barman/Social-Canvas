@@ -54,6 +54,11 @@ const AuthProvider = ({ children }) => {
     //     setLoading(true);
     //     return signOut(auth);
     // }
+    
+    const logOutAfterSignUp = () => {
+        setLoading(true);
+        return signOut(auth);
+    }
 
     // Inside the AuthProvider component
     const logOut = () => {
@@ -180,6 +185,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         googleSignIn,
         logOut,
+        logOutAfterSignUp,
         updateUserProfile,
         updateUser,
         // token,

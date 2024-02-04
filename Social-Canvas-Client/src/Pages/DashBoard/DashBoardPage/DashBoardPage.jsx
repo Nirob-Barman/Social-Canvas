@@ -2,8 +2,8 @@ import React from 'react';
 
 const DashBoardPage = () => {
     return (
-        <div>
-            Welcome to DashBoard
+        <div className='min-h-screen'>
+            <h1 className='text-3xl text-center'>Welcome to DashBoard</h1>
         </div>
     );
 };

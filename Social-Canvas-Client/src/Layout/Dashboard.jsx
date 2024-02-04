@@ -17,7 +17,6 @@ const Dashboard = () => {
                 <div className="w-1/4 bg-gray-200 p-4">
                     {/* Add content for the left side */}
                     <div className='flex items-center justify-center'>
-                        Left Side
                     </div>
                 </div>
 
@@ -33,7 +32,6 @@ const Dashboard = () => {
                 <div className="w-1/4 bg-gray-200 p-4">
                     {/* Add content for the right side */}
                     <div className='flex items-center justify-center'>
-                        Right Side
                     </div>
                 </div>
             </div>

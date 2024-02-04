@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const DashNavBar = () => {
-
     const { user, logOut } = useAuth();
 
     const handleLogOut = () => {
@@ -16,7 +15,6 @@ const DashNavBar = () => {
 
     const navOptions = (
         <ul className="flex items-center">
-            <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>
             <li><Link to="/posts/add" className="text-white hover:text-gray-300">Add Post</Link></li>
             <li><Link to="/posts/allPosts" className="text-white hover:text-gray-300">Posts</Link></li>
             <li><Link to="/posts/myPosts" className="text-white hover:text-gray-300">My Posts</Link></li>

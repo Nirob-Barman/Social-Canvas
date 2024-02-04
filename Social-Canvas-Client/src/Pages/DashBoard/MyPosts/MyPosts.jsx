@@ -114,7 +114,6 @@ const MyPosts = () => {
                 </div>
             ))}
 
-
             <div>
                 <EditPostModal selectedPost={selectedPost} closeModal={closeEditModal} />
             </div>
