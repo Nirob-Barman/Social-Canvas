@@ -55,13 +55,18 @@ const SignUp = () => {
                 confirm_password: data.confirm_password,
                 birth_date: data.birth_date,
                 gender: data.gender,
-                // profile_pic: data.profile_pic,
+                profile_pic: data.profile_pic,
                 // profile_pic: imageUrl,
             };
 
             // Make a POST request to your Django backend
             // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', data);
-            const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData);
+            // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData);
+            const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
 
             // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', {
             //     headers: {
@@ -213,7 +218,7 @@ const SignUp = () => {
                         {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender.message}</p>}
                     </div>
 
-                    {/* <div className="mb-4">
+                    <div className="mb-4">
                         <label htmlFor="profile_pic" className="block text-sm font-medium text-gray-600">
                             Profile Picture
                         </label>
@@ -225,7 +230,7 @@ const SignUp = () => {
                             className={`mt-1 p-2 w-full border rounded ${errors.profile_pic ? 'border-red-500' : ''}`}
                         />
                         {errors.profile_pic && <p className="text-red-500 text-xs mt-1">{errors.profile_pic.message}</p>}
-                    </div> */}
+                    </div>
 
                     <button
                         type="submit"
