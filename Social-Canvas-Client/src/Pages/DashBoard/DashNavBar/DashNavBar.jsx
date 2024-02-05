@@ -52,6 +52,7 @@ const DashNavBar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
+                        {user && <Link to='/details' className="text-white hover:text-gray-300 mr-4">User Details</Link>}
                         {user && <Link to='' className="text-white hover:text-gray-300">Dashboard</Link>}
                     </div>
                 </div>

@@ -16,7 +16,7 @@ const NavBar = () => {
     const navOptions = (
         <ul className="flex items-center">
             <li><Link to="/" className="text-white hover:text-gray-300">Home</Link></li>
-            
+
             {user ? (
                 <li onClick={handleLogOut}><Link to="/" className="text-white hover:text-gray-300">LogOut</Link></li>
             ) : (
@@ -51,6 +51,7 @@ const NavBar = () => {
                 </div>
 
                 <div className="navbar-end">
+                    {user && <Link to='details' className="text-white hover:text-gray-300 mr-4">User Details</Link>}
                     {user && <Link to='posts' className="text-white hover:text-gray-300">DashBoard</Link>}
                 </div>
             </div>
