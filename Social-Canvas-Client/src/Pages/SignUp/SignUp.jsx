@@ -55,7 +55,7 @@ const SignUp = () => {
                 confirm_password: data.confirm_password,
                 birth_date: data.birth_date,
                 gender: data.gender,
-                profile_pic: data.profile_pic,
+                profile_pic: data.profile_pic[0],
                 // profile_pic: imageUrl,
             };
 
@@ -226,7 +226,7 @@ const SignUp = () => {
                             type="file"
                             id="profile_pic"
                             {...register('profile_pic')}
-                            onChange={handleImageUpload}  // Handle image upload
+                            // onChange={handleImageUpload}  // Handle image upload
                             className={`mt-1 p-2 w-full border rounded ${errors.profile_pic ? 'border-red-500' : ''}`}
                         />
                         {errors.profile_pic && <p className="text-red-500 text-xs mt-1">{errors.profile_pic.message}</p>}
