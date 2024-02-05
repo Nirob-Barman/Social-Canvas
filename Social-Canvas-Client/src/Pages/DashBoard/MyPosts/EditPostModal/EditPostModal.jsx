@@ -6,7 +6,7 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
     const [postData, setPostData] = useState(null);
     const [editedData, setEditedData] = useState({
         content: '',
-        // image: '',
+        image: '',
         // video_url: '',
         // Add other fields as needed
     });
@@ -20,6 +20,7 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
             axios.get(`http://127.0.0.1:8000/posts/my-posts/update/${selectedPost.id}`, {
                 headers: {
                     Authorization: `Token ${token}`,
+                    'Content-Type': 'multipart/form-data',
                 },
             })
                 .then(response => setPostData(response.data))
@@ -81,15 +82,15 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                                 className="border rounded px-2 py-1"
                             />
 
-                            {/* <label htmlFor="image" className="block mt-4">Image URL:</label> */}
-                            {/* <input
+                            <label htmlFor="image" className="block mt-4">Image URL:</label>
+                            <input
                                 type="text"
                                 id="image"
                                 name="image"
                                 value={editedData.image || postData.image || ''}
                                 onChange={handleInputChange}
                                 className="border rounded px-2 py-1"
-                            /> */}
+                            />
 
                             {/* <label htmlFor="video_url" className="block mt-4">Video URL:</label> */}
                             {/* <input
