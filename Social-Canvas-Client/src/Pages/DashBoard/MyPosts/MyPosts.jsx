@@ -88,6 +88,7 @@ const MyPosts = () => {
                     {/* <p>Updated At: {post.updated_at}</p> */}
                     <p>Like Count: {post.like_count}</p>
                     <p>Comment Count: {post.comment_count}</p>
+                    {/* <p>{post.image}</p> */}
                     {post.image && (
                         <img src={post.image} alt="Post Image" className="mt-2 rounded-md" />
                     )}

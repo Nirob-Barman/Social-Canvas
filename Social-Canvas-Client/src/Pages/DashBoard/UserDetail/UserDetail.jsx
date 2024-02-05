@@ -34,7 +34,7 @@ const UserDetail = () => {
             </div>
 
             {userData ? (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                     <div>
                         <p className="mb-2">Email: {userData.email}</p>
                         <p className="mb-2">First Name: {userData.first_name}</p>
@@ -42,6 +42,15 @@ const UserDetail = () => {
                         <p className="mb-2">Birth Date: {userData.birth_date}</p>
                         <p className="mb-2">Gender: {userData.gender}</p>
                     </div>
+
+                    {userData.profile_pic && (
+                        <div>
+                            {/* <p>{ userData.profile_pic}</p> */}
+                            <img src={userData.profile_pic} alt="Profile" />
+                            <img src={`http://127.0.0.1:8000/${userData.profile_pic}`} alt="Profile" />
+                        </div>
+                    )}
+                    
 
                     <div>
                         <p className="mb-2">Division: {userData.division}</p>
