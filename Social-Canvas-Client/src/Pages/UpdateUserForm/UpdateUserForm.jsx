@@ -23,7 +23,7 @@ const UpdateUserForm = () => {
         })  // Replace with your API endpoint
             .then(response => {
                 const user = response.data;  // Assuming your API returns user details
-                console.log(user);
+                // console.log(user);
                 // setValue('profile_pic', user.profile_pic);
                 setValue('birth_date', user.birth_date);
                 setStartDate(new Date(user.birth_date));
@@ -61,8 +61,8 @@ const UpdateUserForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="p-6 max-w-md mx-auto bg-white rounded-md shadow-md">
-            {/* <label className="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
-            <input type="file" {...register('profile_pic')} className="form-select mb-4 border rounded-md p-2" /> */}
+            {/* <label className="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label> */}
+            {/* <input type="file" {...register('profile_pic')} className="form-select mb-4 border rounded-md p-2" /> */}
 
             <label className="block text-sm font-medium text-gray-700 mb-1">Birth Date</label>
             {/* <input type="text" {...register('birth_date')} className="form-select mb-4 border rounded-md p-2" /> */}

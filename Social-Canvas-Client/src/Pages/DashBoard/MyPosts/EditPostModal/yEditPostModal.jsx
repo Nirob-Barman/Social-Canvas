@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const EditPostModal = ({ selectedPost, closeModal }) => {
     const [postData, setPostData] = useState(null);
     const [editedData, setEditedData] = useState({
         content: '',
-        // image: '',
-        // video_url: '',
+        image: '',
+        video_url: '',
         // Add other fields as needed
     });
-
-    console.log(postData);
-    console.log(editedData);
 
     useEffect(() => {
         const token = localStorage.getItem('access-token');
@@ -40,9 +36,6 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                     // Handle successful update, e.g., close modal
                     console.log('Post updated successfully:', response.data);
                     closeModal();
-
-                    // Reload the page after successful update
-                    window.location.reload();
                 })
                 .catch(error => console.error('Error updating post:', error));
         }
@@ -81,25 +74,25 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                                 className="border rounded px-2 py-1"
                             />
 
-                            {/* <label htmlFor="image" className="block mt-4">Image URL:</label> */}
-                            {/* <input
+                            <label htmlFor="image" className="block mt-4">Image URL:</label>
+                            <input
                                 type="text"
                                 id="image"
                                 name="image"
                                 value={editedData.image || postData.image || ''}
                                 onChange={handleInputChange}
                                 className="border rounded px-2 py-1"
-                            /> */}
+                            />
 
-                            {/* <label htmlFor="video_url" className="block mt-4">Video URL:</label> */}
-                            {/* <input
+                            <label htmlFor="video_url" className="block mt-4">Video URL:</label>
+                            <input
                                 type="text"
                                 id="video_url"
                                 name="video_url"
                                 value={editedData.video_url || postData.video_url || ''}
                                 onChange={handleInputChange}
                                 className="border rounded px-2 py-1"
-                            /> */}
+                            />
 
                             {/* Add other fields as needed */}
                             <button
