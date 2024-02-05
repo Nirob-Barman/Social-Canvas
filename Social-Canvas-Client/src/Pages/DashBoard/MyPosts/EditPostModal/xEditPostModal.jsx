@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const EditPostModal = ({ selectedPost, closeModal }) => {
+    const navigate = useNavigate();
     const [postData, setPostData] = useState(null);
     const [editedData, setEditedData] = useState({
         content: '',
@@ -9,6 +11,9 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
         video_url: '',
         // Add other fields as needed
     });
+
+    console.log(postData);
+    console.log(editedData);
 
     useEffect(() => {
         const token = localStorage.getItem('access-token');
@@ -30,12 +35,19 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
             axios.put(`http://127.0.0.1:8000/posts/my-posts/update/${selectedPost.id}`, editedData, {
                 headers: {
                     Authorization: `Token ${token}`,
+                    'Content-Type': 'multipart/form-data',
                 },
             })
                 .then(response => {
                     // Handle successful update, e.g., close modal
                     console.log('Post updated successfully:', response.data);
                     closeModal();
+
+                    // Redirect to the desired page
+                    // navigate('/posts/myPosts');
+
+                    // Reload the page after successful update
+                    window.location.reload();
                 })
                 .catch(error => console.error('Error updating post:', error));
         }
