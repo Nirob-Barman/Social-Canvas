@@ -5,95 +5,6 @@ const AllPosts = () => {
     const [posts, setPosts] = useState([]);
     const token = localStorage.getItem('access-token');
 
-    // const handleLike = async (postId) => {
-    //     try {
-    //         console.log(postId);
-    //         // Check if the user has already liked the post
-    //         const existingLike = posts.find(post => post.id === postId && post.user_has_liked);
-    //         console.log(existingLike);
-
-    //         if (existingLike) {
-    //             // If the user has already liked the post, unlike it
-    //             await axios.delete(`http://127.0.0.1:8000/posts/like/${postId}/`, {
-    //                 headers: {
-    //                     Authorization: `Token ${token}`,
-    //                 },
-    //             });
-    //         } else {
-    //             // If the user hasn't liked the post, like it
-    //             const response = await axios.post(`http://127.0.0.1:8000/posts/like/${postId}/`, null, {
-    //                 headers: {
-    //                     Authorization: `Token ${token}`,
-    //                 },
-    //             });
-
-    //             // Update the posts array with the new like data
-    //             const updatedPosts = posts.map(post => (post.id === postId ? response.data : post));
-    //             setPosts(updatedPosts);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error liking/unliking post:', error.message);
-    //     }
-    // };
-
-    // const handleLike = async (postId) => {
-    //     try {
-    //         const existingLike = posts.find(post => post.id === postId)?.user_has_liked;
-
-    //         if (existingLike !== undefined) {
-    //             // If the user has already liked the post, unlike it
-    //             const response = await axios.delete(`http://127.0.0.1:8000/posts/like/${postId}/`, {
-    //                 headers: {
-    //                     Authorization: `Token ${token}`,
-    //                 },
-    //             });
-
-    //             // Update the posts array with the new like data
-    //             const updatedPosts = posts.map(post => (post.id === postId ? response.data : post));
-    //             setPosts(updatedPosts);
-    //         } else {
-    //             // If the user hasn't liked the post, like it
-    //             const response = await axios.post(`http://127.0.0.1:8000/posts/like/${postId}/`, null, {
-    //                 headers: {
-    //                     Authorization: `Token ${token}`,
-    //                 },
-    //             });
-
-    //             // Update the posts array with the new like data
-    //             const updatedPosts = posts.map(post => (post.id === postId ? response.data : post));
-    //             setPosts(updatedPosts);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error liking/unliking post:', error.message);
-    //     }
-    // };
-
-    const handleLike = async (postId) => {
-        try {
-            const response = await axios.post(`http://127.0.0.1:8000/posts/like/${postId}/`, null, {
-                headers: {
-                    Authorization: `Token ${token}`,
-                },
-            });
-
-            // Update the posts array with the new like data
-            const updatedPosts = posts.map(post => {
-                if (post.id === postId) {
-                    return {
-                        ...post,
-                        user_has_liked: !post.user_has_liked, // Toggle like status
-                        like_count: response.data.like_count, // Update like count
-                    };
-                }
-                return post;
-            });
-
-            setPosts(updatedPosts);
-        } catch (error) {
-            console.error('Error liking/unliking post:', error.message);
-        }
-    };
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -117,6 +28,23 @@ const AllPosts = () => {
 
         fetchData();
     }, [token]);
+
+    const handleLike = async (postId) => {
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/posts/like/${postId}/`, {}, {
+                headers: {
+                    Authorization: `Token ${token}`,
+                },
+            });
+
+            if (response.status === 200) {
+                // Refresh the posts after a successful like
+                fetchData();
+            }
+        } catch (error) {
+            console.error('Error liking post:', error.message);
+        }
+    };
 
     return (
         <div>
@@ -144,8 +72,8 @@ const AllPosts = () => {
                                     ></iframe>
                                 )}
                                 <p className="mr-2">Like Count: {post.like_count}</p>
-                                <button onClick={() => handleLike(post.id)} className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-                                    {post.user_has_liked ? 'Unlike' : 'Like'}
+                                <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
+                                    Like
                                 </button>
                                 <p>Comment Count: {post.comment_count}</p>
                             </li>

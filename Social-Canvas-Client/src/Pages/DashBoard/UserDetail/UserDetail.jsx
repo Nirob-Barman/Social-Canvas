@@ -46,8 +46,8 @@ const UserDetail = () => {
                     {userData.profile_pic && (
                         <div>
                             {/* <p>{ userData.profile_pic}</p> */}
-                            <img src={userData.profile_pic} alt="Profile" />
-                            <img src={`http://127.0.0.1:8000/${userData.profile_pic}`} alt="Profile" />
+                            {/* <img src={userData.profile_pic} alt="Profile" /> */}
+                            {/* <img src={`http://127.0.0.1:8000/${userData.profile_pic}`} alt="Profile" /> */}
                         </div>
                     )}
                     
@@ -56,7 +56,7 @@ const UserDetail = () => {
                         <p className="mb-2">Division: {userData.division}</p>
                         <p className="mb-2">District: {userData.district}</p>
                         <p className="mb-2">Phone: {userData.phone}</p>
-                        <p className="mb-2">Profile Picture: {userData.profile_pic}</p>
+                        {/* <p className="mb-2">Profile Picture: {userData.profile_pic}</p> */}
                     </div>
                 </div>
             ) : (
