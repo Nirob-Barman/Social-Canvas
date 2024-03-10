@@ -51,6 +51,9 @@ const LikeButton = ({ postId }) => {
 
             // Check the response and handle any further actions if needed
             console.log(response.data);
+            // if (response.status === 200) {
+            //     setIsLiked(true);
+            // }
         } catch (error) {
             console.error('Error liking post:', error.message);
             // If there's an error, you might want to revert the UI state
