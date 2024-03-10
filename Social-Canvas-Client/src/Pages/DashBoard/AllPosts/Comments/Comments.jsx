@@ -1,36 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import DeleteComment from './DeleteComment/DeleteComment';
 
 const Comments = ({ postId }) => {
     const token = localStorage.getItem('access-token');
     const [comments, setComments] = useState([]);
 
-    useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const response = await axios.get(`http://127.0.0.1:8000/posts/comments/post/${postId}/`, {
-                    headers: {
-                        Authorization: `Token ${token}`,
-                    },
-                });
+    const fetchComments = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/posts/comments/post/${postId}/`, {
+                headers: {
+                    Authorization: `Token ${token}`,
+                },
+            });
 
-                if (response.status === 200) {
-                    setComments(response.data);
-                }
-            } catch (error) {
-                console.error('Error fetching comments:', error.message);
+            if (response.status === 200) {
+                setComments(response.data);
             }
-        };
+        } catch (error) {
+            console.error('Error fetching comments:', error.message);
+        }
+    };
 
+    useEffect(() => {
         fetchComments();
-    }, [postId]);
+    }, [postId, token])
+
 
     return (
         <div>
             <h2 className="text-xl font-semibold mb-2">Comments Section</h2>
             <ul className="list-disc ml-6">
                 {comments.map(comment => (
-                    <li key={comment.id}>{comment.content}</li>
+                    <div key={comment.id}>
+                        <div className='flex gap-2'>
+                            <p>
+                                {comment.content}
+                            </p>
+                            <p>
+                                {/* <button
+                                    onClick={() => handleDelete(comment.id)}>
+                                    Delete
+                                </button> */}
+
+                                <DeleteComment commentId={comment.id} fetchComments={fetchComments} />
+
+                            </p>
+                        </div>
+                    </div>
                 ))}
             </ul>
         </div>
