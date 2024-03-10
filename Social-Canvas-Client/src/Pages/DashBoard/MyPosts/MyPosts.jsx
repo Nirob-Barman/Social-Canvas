@@ -6,7 +6,7 @@ import useMyPost from '../../../Hooks/useMyPost';
 const MyPosts = () => {
     // const [posts, setPosts] = useState([]);
 
-    const [posts] = useMyPost();
+    const [posts, refetch] = useMyPost();
 
     const [selectedPost, setSelectedPost] = useState(null);
 
@@ -66,8 +66,9 @@ const MyPosts = () => {
 
                 if (response.status === 204) {
                     // Post deleted successfully
-                    const updatedPosts = posts.filter((post) => post.id !== postId);
-                    setPosts(updatedPosts);
+                    // const updatedPosts = posts.filter((post) => post.id !== postId);
+                    // setPosts(updatedPosts);
+                    refetch();
                 } else {
                     // Handle deletion error
                     console.error('Error deleting post:', response.data);
