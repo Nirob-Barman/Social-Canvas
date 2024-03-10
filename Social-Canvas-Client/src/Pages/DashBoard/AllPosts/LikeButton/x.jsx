@@ -32,9 +32,9 @@ const LikeButton = ({ postId }) => {
                 },
             });
 
-            // if (response.status === 200) {
-            //     setIsLiked(true);
-            // }
+            if (response.status === 200) {
+                setIsLiked(true);
+            }
         } catch (error) {
             console.error('Error liking post:', error.message);
         }
@@ -48,9 +48,9 @@ const LikeButton = ({ postId }) => {
                 },
             });
 
-            // if (response.status === 200) {
-            //     setIsLiked(false);
-            // }
+            if (response.status === 200) {
+                setIsLiked(false);
+            }
         } catch (error) {
             console.error('Error unliking post:', error.message);
         }
@@ -62,37 +62,12 @@ const LikeButton = ({ postId }) => {
                 {isLiked ? "Already Liked" : "No Liked"}
             </div>
 
-            {/* <button
-                onClick={handleLike}
-                className={`bg-blue-500 text-white py-1 px-2 rounded mt-2`}
-            >
-                Like
-            </button>
-
             <button
-                onClick={handleUnlike}
+                onClick={isLiked ? handleUnlike : handleLike}
                 className={`bg-blue-500 text-white py-1 px-2 rounded mt-2`}
             >
-                Unlike
-            </button> */}
-
-            <div>
-                {isLiked ?
-                    <button
-                        onClick={handleUnlike}
-                        className={`bg-blue-500 text-white py-1 px-2 rounded mt-2`}
-                    >
-                        Unlike
-                    </button>
-                    :
-                    <button
-                        onClick={handleLike}
-                        className={`bg-blue-500 text-white py-1 px-2 rounded mt-2`}
-                    >
-                        Like
-                    </button>
-                }
-            </div>
+                {isLiked ? "Unlike" : "Like"}
+            </button>
         </div>
     );
 };
