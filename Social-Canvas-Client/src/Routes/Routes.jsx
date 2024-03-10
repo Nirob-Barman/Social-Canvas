@@ -15,6 +15,7 @@ import AllPosts from "../Pages/DashBoard/AllPosts/AllPosts";
 import DashBoardPage from "../Pages/DashBoard/DashBoardPage/DashBoardPage";
 import AddPost from "../Pages/DashBoard/AddPost/AddPost";
 import UserLikedPosts from "../Pages/DashBoard/UserLikedPosts/UserLikedPosts";
+import TopLikedPosts from "../Pages/DashBoard/TopLikedPosts/TopLikedPosts";
 
 export const router = createBrowserRouter([
     {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
             {
                 path: 'myLikedPosts',
                 element: <UserLikedPosts />
+            },
+            {
+                path: 'topLikedPosts',
+                element: <TopLikedPosts />
             }
         ]
     }
