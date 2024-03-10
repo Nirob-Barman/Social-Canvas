@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import UpdateDeleteComponent from './DeleteComment/UpdateDeleteComponent';
-import CommentAdd from './AddCommentComponent/CommentAdd/CommentAdd';
+import UpdateDeleteComponent from './UpdateDeleteComponent/UpdateDeleteComponent';
 // import AddCommentComponent from './AddCommentComponent/AddCommentComponent';
 
 const Comments = ({ postId }) => {
@@ -34,8 +33,6 @@ const Comments = ({ postId }) => {
             <h2 className="text-xl font-semibold mb-2">Comments Section</h2>
             <h2>{postId}</h2>
 
-            <CommentAdd postId={postId} fetchComments={fetchComments}></CommentAdd>
-
             {/* <AddCommentComponent postId={postId} fetchComments={fetchComments} /> */}
 
             <div>
@@ -50,14 +47,7 @@ const Comments = ({ postId }) => {
                                 {comment.content}
                             </p>
                             <div>
-                                {/* <button
-                                    onClick={() => handleDelete(comment.id)}>
-                                    Delete
-                                </button> */}
-
-                                {/* <DeleteComment commentId={comment.id} fetchComments={fetchComments} /> */}
                                 <UpdateDeleteComponent commentId={comment.id} fetchComments={fetchComments} />
-
                             </div>
                         </div>
                     </div>

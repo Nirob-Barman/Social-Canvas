@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Comments from './Comments/Comments';
+import AddCommentComponent from './Comments/AddCommentComponent/AddCommentComponent';
+
 
 const AllPosts = () => {
     const [posts, setPosts] = useState([]);
