@@ -18,6 +18,7 @@ const DashNavBar = () => {
             <li><Link to="/posts/add" className="text-white hover:text-gray-300">Add Post</Link></li>
             <li><Link to="/posts/allPosts" className="text-white hover:text-gray-300">Posts</Link></li>
             <li><Link to="/posts/myPosts" className="text-white hover:text-gray-300">My Posts</Link></li>
+            <li><Link to="/posts/myLikedPosts" className="text-white hover:text-gray-300">Liked Post</Link></li>
             {user ? (
                 <li onClick={handleLogOut}><Link className="text-white hover:text-gray-300">LogOut</Link></li>
             ) : (

@@ -14,6 +14,7 @@ import UpdateUserForm from "../Pages/UpdateUserForm/UpdateUserForm";
 import AllPosts from "../Pages/DashBoard/AllPosts/AllPosts";
 import DashBoardPage from "../Pages/DashBoard/DashBoardPage/DashBoardPage";
 import AddPost from "../Pages/DashBoard/AddPost/AddPost";
+import UserLikedPosts from "../Pages/DashBoard/UserLikedPosts/UserLikedPosts";
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
             {
                 path: 'allPosts',
                 element: <AllPosts />
+            },
+            {
+                path: 'myLikedPosts',
+                element: <UserLikedPosts />
             }
         ]
     }
