@@ -27,11 +27,10 @@ const Comments = ({ postId }) => {
         fetchComments();
     }, [postId, token])
 
-
     return (
         <div>
             <div className="max-w-md mx-auto mt-8 p-4 border rounded-md shadow-md">
-                <h2 className="text-xl font-semibold mb-4">Comments Section</h2>
+                <h2 className="text-xl font-semibold mb-4 text-center">{comments.length} Comments Here</h2>
                 <AddCommentComponent postId={postId} fetchComments={fetchComments} />
 
                 <ul className="list-disc pl-4">

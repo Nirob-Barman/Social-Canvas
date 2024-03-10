@@ -77,7 +77,6 @@ const AllPosts = () => {
                                 )}
                                 <p className="mr-2">Like Count: {post.like_count}</p>
                                 <LikeButton postId={post.id} />
-                                <p>Comment Count: {post.comment_count}</p>
                                 <p>Id: {post.id}</p>
                                 <Comments postId={post.id} />
                             </li>

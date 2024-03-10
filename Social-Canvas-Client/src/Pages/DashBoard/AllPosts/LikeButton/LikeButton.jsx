@@ -23,7 +23,25 @@ const LikeButton = ({ postId }) => {
         checkLikeStatus();
     }, [postId]);
 
+    // const handleLike = async () => {
+    //     try {
+    //         const response = await axios.post(`http://127.0.0.1:8000/posts/like/create/${postId}/`, {}, {
+    //             headers: {
+    //                 Authorization: `Token ${token}`,
+    //             },
+    //         });
+    //         console.log(response.data)
+    //         if (response.status === 200) {
+    //             setIsLiked(true);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error liking post:', error.message);
+    //     }
+    // };
+
     const handleLike = async () => {
+        setIsLiked(true); // Update UI immediately
+
         try {
             const response = await axios.post(`http://127.0.0.1:8000/posts/like/create/${postId}/`, {}, {
                 headers: {
@@ -31,11 +49,12 @@ const LikeButton = ({ postId }) => {
                 },
             });
 
-            // if (response.status === 200) {
-            //     setIsLiked(true);
-            // }
+            // Check the response and handle any further actions if needed
+            console.log(response.data);
         } catch (error) {
             console.error('Error liking post:', error.message);
+            // If there's an error, you might want to revert the UI state
+            setIsLiked(false);
         }
     };
 
@@ -46,10 +65,11 @@ const LikeButton = ({ postId }) => {
                     Authorization: `Token ${token}`,
                 },
             });
+            console.log(response.data)
 
-            // if (response.status === 200) {
-            //     setIsLiked(false);
-            // }
+            if (response.status === 200) {
+                setIsLiked(false);
+            }
         } catch (error) {
             console.error('Error unliking post:', error.message);
         }
