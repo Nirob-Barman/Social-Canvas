@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UpdateDeleteComponent from './UpdateDeleteComponent/UpdateDeleteComponent';
-// import AddCommentComponent from './AddCommentComponent/AddCommentComponent';
+import AddCommentComponent from './AddCommentComponent/AddCommentComponent';
 
 const Comments = ({ postId }) => {
     const token = localStorage.getItem('access-token');
@@ -30,26 +30,23 @@ const Comments = ({ postId }) => {
 
     return (
         <div>
-            <h2 className="text-xl font-semibold mb-2">Comments Section</h2>
-            <h2>{postId}</h2>
-            <h3>Length: {comments.length}</h3>
+            <div className="max-w-md mx-auto mt-8 p-4 border rounded-md shadow-md">
+                <h2 className="text-xl font-semibold mb-4">Comments Section</h2>
+                <AddCommentComponent postId={postId} fetchComments={fetchComments} />
 
-            {/* <AddCommentComponent postId={postId} fetchComments={fetchComments} /> */}
-
-            <ul className="list-disc ml-6">
-                {comments.map(comment => (
-                    <div key={comment.id}>
-                        <div className='flex gap-2'>
-                            <p>
-                                {comment.content}
-                            </p>
-                            <div>
-                                <UpdateDeleteComponent commentId={comment.id} fetchComments={fetchComments} />
+                <ul className="list-disc pl-4">
+                    {comments.map(comment => (
+                        <li key={comment.id} className="mb-4">
+                            <div className="flex items-center justify-between">
+                                <p className="text-gray-800">{comment.content}</p>
+                                <div className="flex items-center space-x-2">
+                                    <UpdateDeleteComponent commentId={comment.id} fetchComments={fetchComments} />
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                ))}
-            </ul>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };

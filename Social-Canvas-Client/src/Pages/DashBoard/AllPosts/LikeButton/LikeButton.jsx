@@ -23,7 +23,6 @@ const LikeButton = ({ postId }) => {
         checkLikeStatus();
     }, [postId]);
 
-
     const handleLike = async () => {
         try {
             const response = await axios.post(`http://127.0.0.1:8000/posts/like/create/${postId}/`, {}, {
