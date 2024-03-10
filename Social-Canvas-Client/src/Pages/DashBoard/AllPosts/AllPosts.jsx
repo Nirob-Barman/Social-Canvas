@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
 import Comments from './Comments/Comments';
-import AddCommentComponent from './Comments/AddCommentComponent/AddCommentComponent';
 import LikeButton from './LikeButton/LikeButton';
 import useAllPost from '../../../Hooks/useAllPost';
 
@@ -9,7 +8,7 @@ import useAllPost from '../../../Hooks/useAllPost';
 const AllPosts = () => {
     // const [posts, setPosts] = useState([]);
 
-    const [posts, refetch] = useAllPost();
+    const [posts] = useAllPost();
     console.log(posts);
 
     // const token = localStorage.getItem('access-token');

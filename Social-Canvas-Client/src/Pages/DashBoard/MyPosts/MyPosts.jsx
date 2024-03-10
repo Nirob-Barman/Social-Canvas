@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditPostModal from './EditPostModal/EditPostModal';
+import useMyPost from '../../../Hooks/useMyPost';
 
 const MyPosts = () => {
-    const [posts, setPosts] = useState([]);
+    // const [posts, setPosts] = useState([]);
+
+    const [posts] = useMyPost();
+
     const [selectedPost, setSelectedPost] = useState(null);
 
-    useEffect(() => {
-        // Check if token exists before making the request
-        const token = localStorage.getItem('access-token');
-        if (token) {
-            // Fetch the user's posts from the Django API with the Authorization header
-            axios.get('http://127.0.0.1:8000/posts/my-posts/', {
-                headers: {
-                    Authorization: `Token ${token}`,
-                },
-            })
-                .then(response => setPosts(response.data))
-                .catch(error => console.error('Error fetching posts:', error));
-        }
-    }, []);
+    // useEffect(() => {
+    //     // Check if token exists before making the request
+    //     const token = localStorage.getItem('access-token');
+    //     if (token) {
+    //         // Fetch the user's posts from the Django API with the Authorization header
+    //         axios.get('http://127.0.0.1:8000/posts/my-posts/', {
+    //             headers: {
+    //                 Authorization: `Token ${token}`,
+    //             },
+    //         })
+    //             .then(response => setPosts(response.data))
+    //             .catch(error => console.error('Error fetching posts:', error));
+    //     }
+    // }, []);
 
     // const openEditModal = (postId) => {
     //     const token = localStorage.getItem('access-token');
