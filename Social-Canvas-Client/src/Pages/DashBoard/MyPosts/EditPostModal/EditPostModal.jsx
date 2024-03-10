@@ -12,8 +12,8 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
         // Add other fields as needed
     });
 
-    console.log(postData);
-    console.log(editedData);
+    // console.log(postData);
+    // console.log(editedData);
 
     useEffect(() => {
         const token = localStorage.getItem('access-token');

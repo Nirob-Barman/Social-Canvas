@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Comments from './Comments/Comments';
 import AddCommentComponent from './Comments/AddCommentComponent/AddCommentComponent';
+import LikeButton from './LikeButton/LikeButton';
 
 
 const AllPosts = () => {
@@ -32,22 +33,22 @@ const AllPosts = () => {
         fetchData();
     }, [token]);
 
-    const handleLike = async (postId) => {
-        try {
-            const response = await axios.post(`http://127.0.0.1:8000/posts/like/${postId}/`, {}, {
-                headers: {
-                    Authorization: `Token ${token}`,
-                },
-            });
+    // const handleLike = async (postId) => {
+    //     try {
+    //         const response = await axios.post(`http://127.0.0.1:8000/posts/like/${postId}/`, {}, {
+    //             headers: {
+    //                 Authorization: `Token ${token}`,
+    //             },
+    //         });
 
-            if (response.status === 200) {
-                // Refresh the posts after a successful like
-                fetchData();
-            }
-        } catch (error) {
-            console.error('Error liking post:', error.message);
-        }
-    };
+    //         if (response.status === 200) {
+    //             // Refresh the posts after a successful like
+    //             fetchData();
+    //         }
+    //     } catch (error) {
+    //         console.error('Error liking post:', error.message);
+    //     }
+    // };
 
     return (
         <div>
@@ -75,11 +76,9 @@ const AllPosts = () => {
                                     ></iframe>
                                 )}
                                 <p className="mr-2">Like Count: {post.like_count}</p>
-                                <button className="bg-blue-500 text-white py-1 px-2 rounded mt-2">
-                                    Like
-                                </button>
+                                <LikeButton postId={post.id} />
                                 <p>Comment Count: {post.comment_count}</p>
-
+                                <p>Id: {post.id}</p>
                                 <Comments postId={post.id} />
                             </li>
                         ))}

@@ -32,12 +32,9 @@ const Comments = ({ postId }) => {
         <div>
             <h2 className="text-xl font-semibold mb-2">Comments Section</h2>
             <h2>{postId}</h2>
+            <h3>Length: {comments.length}</h3>
 
             {/* <AddCommentComponent postId={postId} fetchComments={fetchComments} /> */}
-
-            <div>
-                Add Comment
-            </div>
 
             <ul className="list-disc ml-6">
                 {comments.map(comment => (
