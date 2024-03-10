@@ -1,9 +1,7 @@
-// DeleteComment.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const DeleteComment = ({ commentId, fetchComments }) => {
+const UpdateDeleteComponent = ({ commentId, fetchComments }) => {
     const [belongsToUser, setBelongsToUser] = useState(false);
     const [updateMode, setUpdateMode] = useState(false);
     const [newContent, setNewContent] = useState("");
@@ -76,9 +74,6 @@ const DeleteComment = ({ commentId, fetchComments }) => {
             console.error('Error updating comment:', error.message);
         }
     };
-
-
-
     return (
         <div>
             <div className='flex gap-5'>
@@ -119,4 +114,4 @@ const DeleteComment = ({ commentId, fetchComments }) => {
     );
 };
 
-export default DeleteComment;
+export default UpdateDeleteComponent;

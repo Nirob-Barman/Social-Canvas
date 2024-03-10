@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DeleteComment from './DeleteComment/DeleteComment';
+import UpdateDeleteComponent from './DeleteComment/UpdateDeleteComponent';
+import CommentAdd from './AddCommentComponent/CommentAdd/CommentAdd';
+// import AddCommentComponent from './AddCommentComponent/AddCommentComponent';
 
 const Comments = ({ postId }) => {
     const token = localStorage.getItem('access-token');
@@ -30,6 +32,16 @@ const Comments = ({ postId }) => {
     return (
         <div>
             <h2 className="text-xl font-semibold mb-2">Comments Section</h2>
+            <h2>{postId}</h2>
+
+            <CommentAdd postId={postId} fetchComments={fetchComments}></CommentAdd>
+
+            {/* <AddCommentComponent postId={postId} fetchComments={fetchComments} /> */}
+
+            <div>
+                Add Comment
+            </div>
+
             <ul className="list-disc ml-6">
                 {comments.map(comment => (
                     <div key={comment.id}>
@@ -37,15 +49,16 @@ const Comments = ({ postId }) => {
                             <p>
                                 {comment.content}
                             </p>
-                            <p>
+                            <div>
                                 {/* <button
                                     onClick={() => handleDelete(comment.id)}>
                                     Delete
                                 </button> */}
 
-                                <DeleteComment commentId={comment.id} fetchComments={fetchComments} />
+                                {/* <DeleteComment commentId={comment.id} fetchComments={fetchComments} /> */}
+                                <UpdateDeleteComponent commentId={comment.id} fetchComments={fetchComments} />
 
-                            </p>
+                            </div>
                         </div>
                     </div>
                 ))}
