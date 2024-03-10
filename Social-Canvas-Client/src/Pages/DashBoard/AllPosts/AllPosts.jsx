@@ -3,35 +3,40 @@ import axios from 'axios';
 import Comments from './Comments/Comments';
 import AddCommentComponent from './Comments/AddCommentComponent/AddCommentComponent';
 import LikeButton from './LikeButton/LikeButton';
+import useAllPost from '../../../Hooks/useAllPost';
 
 
 const AllPosts = () => {
-    const [posts, setPosts] = useState([]);
-    const token = localStorage.getItem('access-token');
+    // const [posts, setPosts] = useState([]);
+
+    const [posts, refetch] = useAllPost();
+    console.log(posts);
+
+    // const token = localStorage.getItem('access-token');
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('http://127.0.0.1:8000/posts/list/', {
-                    headers: {
-                        Authorization: `Token ${token}`,
-                    },
-                });
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await fetch('http://127.0.0.1:8000/posts/list/', {
+    //                 headers: {
+    //                     Authorization: `Token ${token}`,
+    //                 },
+    //             });
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch data');
+    //             }
 
-                const data = await response.json();
-                setPosts(data);
-            } catch (error) {
-                console.error('Error fetching data:', error.message);
-            }
-        };
+    //             const data = await response.json();
+    //             setPosts(data);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error.message);
+    //         }
+    //     };
 
-        fetchData();
-    }, [token]);
+    //     fetchData();
+    // }, [token]);
 
     // const handleLike = async (postId) => {
     //     try {
