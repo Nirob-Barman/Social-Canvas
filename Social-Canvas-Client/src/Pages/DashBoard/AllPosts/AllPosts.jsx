@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Comments from './Comments/Comments';
 
 const AllPosts = () => {
     const [posts, setPosts] = useState([]);
@@ -76,6 +77,8 @@ const AllPosts = () => {
                                     Like
                                 </button>
                                 <p>Comment Count: {post.comment_count}</p>
+
+                                <Comments postId={post.id} />
                             </li>
                         ))}
                     </ul>
