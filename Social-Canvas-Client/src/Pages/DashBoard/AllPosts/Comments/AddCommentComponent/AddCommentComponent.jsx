@@ -8,12 +8,20 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
     const handleAddComment = async (e) => {
         e.preventDefault(); // Prevents the default form submission behavior
 
+        // postId = parseInt(postId, 10);
+        // console.log(typeof(postId));
+
         try {
             const payload = {
                 content: newComment,
             };
 
-            console.log(payload)
+            // console.log(payload)
+            // console.log(typeof(payload))
+
+            // console.log(typeof (postId))
+            // postId = parseInt(postId)
+            // console.log(typeof (postId))
 
             const response = await axios.post(
                 `http://127.0.0.1:8000/posts/comments/${postId}/`,
@@ -24,6 +32,8 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
                     },
                 }
             );
+
+            console.log('Response:', response);
 
             if (response.status === 201) {
                 // Comment added successfully, refresh comments
