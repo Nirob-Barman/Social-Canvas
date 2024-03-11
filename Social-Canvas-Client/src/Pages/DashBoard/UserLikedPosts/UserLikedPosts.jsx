@@ -23,11 +23,21 @@ const UserLikedPosts = () => {
         };
 
         fetchLikedPosts();
-    }, []);
+    }, [token]);
 
     return (
         <div>
-            <h1>User Liked Posts</h1>
+
+            <div>
+                {
+                    likedPosts.length === 0 ? (
+                        <div className="text-2xl font-bold mb-4 flex justify-center items-center h-[70vh]">
+                            <h1> No liked posts found. </h1>
+                        </div>
+                    )
+                        : <h1>User Liked Posts</h1>
+                }
+            </div >
             <ul>
                 {likedPosts.map(post => (
                     <li key={post.id}>
@@ -53,7 +63,7 @@ const UserLikedPosts = () => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </div >
     );
 };
 
