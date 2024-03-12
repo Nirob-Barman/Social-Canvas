@@ -9,14 +9,14 @@ const UserDetail = () => {
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                // const response = await axios.get('https://social-canvas.onrender.com/accounts/user_detail/');
-                const response = await axios.get('https://social-canvas.onrender.com/accounts/user_detail/', {
+                // const response = await axios.get('http://127.0.0.1:8000/accounts/user_detail/');
+                const response = await axios.get('http://127.0.0.1:8000/accounts/user_detail/', {
                     headers: {
                         // Authorization: `Bearer ${token}`,
                         Authorization: `Token ${token}`,
                     },
                 });
-                console.log('User details:', response.data);
+                // console.log('User details:', response.data);
                 setUserData(response.data);
             } catch (error) {
                 console.error('Error fetching user details:', error);
@@ -47,7 +47,7 @@ const UserDetail = () => {
                         <div>
                             {/* <p>{ userData.profile_pic}</p> */}
                             {/* <img src={userData.profile_pic} alt="Profile" /> */}
-                            {/* <img src={`https://social-canvas.onrender.com/${userData.profile_pic}`} alt="Profile" /> */}
+                            {/* <img src={`http://127.0.0.1:8000/${userData.profile_pic}`} alt="Profile" /> */}
                         </div>
                     )}
 

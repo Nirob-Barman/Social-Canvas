@@ -4,30 +4,33 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import useTopLikedPosts from '../../../Hooks/useTopLikedPosts';
 
 const TopLikedPosts = () => {
-    const [topLikedPosts, setTopLikedPosts] = useState([]);
-    const token = localStorage.getItem('access-token');
+    // const [topLikedPosts, setTopLikedPosts] = useState([]);
+    // const token = localStorage.getItem('access-token');
 
-    useEffect(() => {
-        const fetchTopLikedPosts = async () => {
-            try {
-                const response = await axios.get('https://social-canvas.onrender.com/posts/liked-posts/top/', {
-                    // headers: {
-                    //     Authorization: `Token ${token}`,
-                    // },
-                });
+    const [topLikedPosts, refetch] = useTopLikedPosts();
 
-                if (response.status === 200) {
-                    setTopLikedPosts(response.data);
-                }
-            } catch (error) {
-                console.error('Error fetching top liked posts:', error.message);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchTopLikedPosts = async () => {
+    //         try {
+    //             const response = await axios.get('https://social-canvas.onrender.com/posts/liked-posts/top/', {
+    //                 // headers: {
+    //                 //     Authorization: `Token ${token}`,
+    //                 // },
+    //             });
 
-        fetchTopLikedPosts();
-    }, []);
+    //             if (response.status === 200) {
+    //                 setTopLikedPosts(response.data);
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching top liked posts:', error.message);
+    //         }
+    //     };
+
+    //     fetchTopLikedPosts();
+    // }, []);
 
     return (
         <div>

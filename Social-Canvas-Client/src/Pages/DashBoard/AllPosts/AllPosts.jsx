@@ -9,7 +9,7 @@ const AllPosts = () => {
     // const [posts, setPosts] = useState([]);
 
     const [posts] = useAllPost();
-    console.log(posts);
+    // console.log(posts);
 
     // const token = localStorage.getItem('access-token');
 
