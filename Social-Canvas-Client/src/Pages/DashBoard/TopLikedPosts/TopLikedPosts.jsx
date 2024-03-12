@@ -13,9 +13,9 @@ const TopLikedPosts = () => {
         const fetchTopLikedPosts = async () => {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/posts/liked-posts/top/', {
-                    headers: {
-                        Authorization: `Token ${token}`,
-                    },
+                    // headers: {
+                    //     Authorization: `Token ${token}`,
+                    // },
                 });
 
                 if (response.status === 200) {
@@ -31,29 +31,36 @@ const TopLikedPosts = () => {
 
     return (
         <div>
-            <div className='my-20'>
-                <Swiper
-                    slidesPerView={3}
-                    spaceBetween={10}
-                    navigation
-                    pagination={{ clickable: true }}
-                    style={{ height: '300px' }}
-                >
-                    {topLikedPosts.map(post => (
-                        <SwiperSlide key={post.id}>
-                            <img
-                                src={post.image}
-                                alt={`Liked Post ${post.id}`}
-                                style={{
-                                    objectFit: 'cover',
-                                    // maxWidth: '100%'
-                                    width: '100%',
-                                    height: '100%',
-                                }}
-                            />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+            <div>
+                
+                <div className='my-20'>
+                    <div>
+                        <h1 className='text-5xl text-center mb-10'>Top Liked Posts</h1>
+                    </div>
+
+                    <Swiper
+                        slidesPerView={3}
+                        spaceBetween={10}
+                        navigation
+                        pagination={{ clickable: true }}
+                        style={{ height: '300px' }}
+                    >
+                        {topLikedPosts.map(post => (
+                            <SwiperSlide key={post.id}>
+                                <img
+                                    src={post.image}
+                                    alt={`Liked Post ${post.id}`}
+                                    style={{
+                                        objectFit: 'cover',
+                                        // maxWidth: '100%'
+                                        width: '100%',
+                                        height: '100%',
+                                    }}
+                                />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
         </div>
     );

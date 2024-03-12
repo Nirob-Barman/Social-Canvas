@@ -16,18 +16,31 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
                 content: newComment,
             };
 
-            // console.log(payload)
-            // console.log(typeof(payload))
+            console.log(payload)
+            console.log(typeof(payload))
 
             // console.log(typeof (postId))
             // postId = parseInt(postId)
             // console.log(typeof (postId))
+
+            // const response = await axios.post(
+            //     `http://127.0.0.1:8000/posts/comments/${postId}/`,
+            //     // payload,
+            //     JSON.stringify(payload),
+            //     {
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             Authorization: `Token ${token}`,
+            //         },
+            //     }
+            // );
 
             const response = await axios.post(
                 `http://127.0.0.1:8000/posts/comments/${postId}/`,
                 payload,
                 {
                     headers: {
+                        'Content-Type': 'application/json',
                         Authorization: `Token ${token}`,
                     },
                 }
