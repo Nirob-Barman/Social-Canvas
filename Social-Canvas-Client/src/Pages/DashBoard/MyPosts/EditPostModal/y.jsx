@@ -12,7 +12,7 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
     useEffect(() => {
         const token = localStorage.getItem('access-token');
         if (token && selectedPost) {
-            axios.get(`http://127.0.0.1:8000/posts/my-posts/update/${selectedPost.id}`, {
+            axios.get(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },
@@ -32,7 +32,7 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
         const token = localStorage.getItem('access-token');
         if (token && selectedPost) {
             try {
-                await axios.put(`http://127.0.0.1:8000/posts/my-posts/update/${selectedPost.id}`, formData, {
+                await axios.put(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, formData, {
                     headers: {
                         Authorization: `Token ${token}`,
                     },

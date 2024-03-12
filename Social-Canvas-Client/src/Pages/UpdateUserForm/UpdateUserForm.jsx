@@ -16,7 +16,7 @@ const UpdateUserForm = () => {
 
     useEffect(() => {
         // Fetch user details and set form values
-        axios.get('http://127.0.0.1:8000/accounts/update/', {
+        axios.get('https://social-canvas.onrender.com/accounts/update/', {
             headers: {
                 Authorization: `Token ${token}`,
             },
@@ -44,8 +44,8 @@ const UpdateUserForm = () => {
 
             console.log(data);
 
-            // await axios.put('http://127.0.0.1:8000/accounts/update/', data);
-            await axios.put('http://127.0.0.1:8000/accounts/update/', data, {
+            // await axios.put('https://social-canvas.onrender.com/accounts/update/', data);
+            await axios.put('https://social-canvas.onrender.com/accounts/update/', data, {
                 headers: {
                     Authorization: `Token ${token}`,
                     'Content-Type': 'multipart/form-data',

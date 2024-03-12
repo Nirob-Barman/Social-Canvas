@@ -12,7 +12,7 @@ const TopLikedPosts = () => {
     useEffect(() => {
         const fetchTopLikedPosts = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/posts/liked-posts/top/', {
+                const response = await axios.get('https://social-canvas.onrender.com/posts/liked-posts/top/', {
                     // headers: {
                     //     Authorization: `Token ${token}`,
                     // },
@@ -32,10 +32,14 @@ const TopLikedPosts = () => {
     return (
         <div>
             <div>
-                
+
                 <div className='my-20'>
-                    <div>
+                    {/* <div>
                         <h1 className='text-5xl text-center mb-10'>Top Liked Posts</h1>
+                    </div> */}
+
+                    <div className="mx-auto text-center md:w-4/12 my-8">
+                        <h3 className="text-3xl uppercase border-y-4 py-4">Top Liked Posts</h3>
                     </div>
 
                     <Swiper

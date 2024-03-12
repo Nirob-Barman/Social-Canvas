@@ -70,14 +70,14 @@ export const router = createBrowserRouter([
                 path: 'myLikedPosts',
                 element: <UserLikedPosts />
             },
-            {
-                path: 'topLikedPosts',
-                element: <TopLikedPosts />
-            },
-            {
-                path: 'topCommentedPosts',
-                element: <TopCommentedPosts />
-            }
+            // {
+            //     path: 'topLikedPosts',
+            //     element: <TopLikedPosts />
+            // },
+            // {
+            //     path: 'topCommentedPosts',
+            //     element: <TopCommentedPosts />
+            // },
         ]
     }
 ]);

@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
 
     // const [sessionid, setSessionId] = useState('');
     // const [csrfToken, setCsrfToken] = useState('');
-    
+
 
     // console.log("token from AuthProvider when user changes: ", token);
     // console.log("csrf from AuthProvider when user changes: ", csrfToken);
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
     //     setLoading(true);
     //     return signOut(auth);
     // }
-    
+
     const logOutAfterSignUp = () => {
         setLoading(true);
         return signOut(auth);
@@ -64,16 +64,16 @@ const AuthProvider = ({ children }) => {
     const logOut = () => {
         setLoading(true);
         console.log('Logging out...');
-        return axios.get('http://127.0.0.1:8000/accounts/logout/')
+        return axios.get('https://social-canvas.onrender.com/accounts/logout/')
             .then(() => {
                 // After successful logout from the backend, also sign out from Firebase
                 console.log('Logged out successfully');
                 localStorage.removeItem('access-token');
                 localStorage.removeItem('user_id');
-                
+
                 // Delete the token from local storage
                 // localStorage.removeItem('sessionid');
-                
+
                 // // Clear the csrf and token from state
                 // setCsrf('');
                 // setToken('');
@@ -83,7 +83,7 @@ const AuthProvider = ({ children }) => {
 
                 // Delete token cookie
                 // document.cookie = 'sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-                
+
                 return signOut(auth);
             })
             .catch(error => {
@@ -162,10 +162,10 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
-    
+
     const updateUser = (data) => {
         setLoading(true);
-        return axios.put('http://127.0.0.1:8000/accounts/update/', data)
+        return axios.put('https://social-canvas.onrender.com/accounts/update/', data)
             .then(response => {
                 console.log('User updated successfully:', response.data);
             })

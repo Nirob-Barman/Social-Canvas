@@ -11,7 +11,7 @@ const UpdateDeleteComponent = ({ commentId, fetchComments }) => {
     useEffect(() => {
         const checkBelongsToUser = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/posts/comment/belongs-to-user/${commentId}/`, {
+                const response = await axios.get(`https://social-canvas.onrender.com/posts/comment/belongs-to-user/${commentId}/`, {
                     headers: {
                         Authorization: `Token ${token}`,
                     },
@@ -30,7 +30,7 @@ const UpdateDeleteComponent = ({ commentId, fetchComments }) => {
 
     const handleDelete = async () => {
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/posts/comments/delete/${commentId}/`, {
+            const response = await axios.delete(`https://social-canvas.onrender.com/posts/comments/delete/${commentId}/`, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },
@@ -50,7 +50,7 @@ const UpdateDeleteComponent = ({ commentId, fetchComments }) => {
     const handleUpdate = async () => {
         try {
             const response = await axios.patch(
-                `http://127.0.0.1:8000/posts/comments/update/${commentId}/`,
+                `https://social-canvas.onrender.com/posts/comments/update/${commentId}/`,
                 {
                     content: newContent,
                 },

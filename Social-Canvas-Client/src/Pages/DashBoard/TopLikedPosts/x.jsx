@@ -8,7 +8,7 @@ const TopLikedPosts = () => {
     useEffect(() => {
         const fetchTopLikedPosts = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/posts/liked-posts/top/', {
+                const response = await axios.get('https://social-canvas.onrender.com/posts/liked-posts/top/', {
                     headers: {
                         Authorization: `Token ${token}`,
                     },

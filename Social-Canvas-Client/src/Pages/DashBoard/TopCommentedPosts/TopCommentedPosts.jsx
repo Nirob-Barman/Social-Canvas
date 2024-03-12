@@ -11,7 +11,7 @@ const TopCommentedPosts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/posts/commented-posts/top/');
+                const response = await fetch('https://social-canvas.onrender.com/posts/commented-posts/top/');
 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -29,7 +29,10 @@ const TopCommentedPosts = () => {
 
     return (
         <div className='my-20'>
-            <h1 className='text-5xl text-center mb-10'>Top Commented Posts</h1>
+            {/* <h1 className='text-5xl text-center mb-10'>Top Commented Posts</h1> */}
+            <div className="mx-auto text-center md:w-4/12 my-8">
+                <h3 className="text-3xl uppercase border-y-4 py-4">Top Commented Posts</h3>
+            </div>
             <Swiper
                 slidesPerView={3}
                 spaceBetween={10}
@@ -52,7 +55,7 @@ const TopCommentedPosts = () => {
                     <SwiperSlide key={post.id}>
                         <img
                             // src={post.image}
-                            src={`http://127.0.0.1:8000${post.image}`}
+                            src={`https://social-canvas.onrender.com${post.image}`}
                             alt={`Commented Post ${post.id}`}
                             style={{
                                 objectFit: 'cover',

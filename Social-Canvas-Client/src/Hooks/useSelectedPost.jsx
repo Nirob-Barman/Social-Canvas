@@ -6,7 +6,7 @@ const useSelectedPost = (selectedPostId) => {
     const { refetch, data: newEditedData = [] } = useQuery({
         queryKey: ['getNewEditedData'],
         queryFn: async (_, selectedPostId) => {
-            const res = await fetch(`http://127.0.0.1:8000/posts/my-posts/update/${selectedPostId}`, {
+            const res = await fetch(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPostId}`, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },

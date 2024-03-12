@@ -18,7 +18,7 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
     useEffect(() => {
         const token = localStorage.getItem('access-token');
         if (token && selectedPost) {
-            axios.get(`http://127.0.0.1:8000/posts/my-posts/update/${selectedPost.id}`, {
+            axios.get(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },
@@ -37,7 +37,7 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
             formData.append('video_url', editedData.video_url);
 
             // Assuming you have an API endpoint to handle post updates
-            axios.put(`http://127.0.0.1:8000/posts/my-posts/update/${selectedPost.id}`, formData, {
+            axios.put(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, formData, {
                 headers: {
                     Authorization: `Token ${token}`,
                     'Content-Type': 'multipart/form-data',
