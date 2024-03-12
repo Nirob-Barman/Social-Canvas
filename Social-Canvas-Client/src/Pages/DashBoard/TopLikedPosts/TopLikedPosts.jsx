@@ -37,14 +37,18 @@ const TopLikedPosts = () => {
                     spaceBetween={10}
                     navigation
                     pagination={{ clickable: true }}
+                    style={{ height: '300px' }}
                 >
                     {topLikedPosts.map(post => (
                         <SwiperSlide key={post.id}>
                             <img
-                                src={post.image} // Assuming your post object has an 'image' property
+                                src={post.image}
                                 alt={`Liked Post ${post.id}`}
                                 style={{
-                                    maxWidth: '100%'
+                                    objectFit: 'cover',
+                                    // maxWidth: '100%'
+                                    width: '100%',
+                                    height: '100%',
                                 }}
                             />
                         </SwiperSlide>
