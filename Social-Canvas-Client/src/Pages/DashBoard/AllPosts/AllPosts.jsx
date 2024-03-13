@@ -58,7 +58,7 @@ const AllPosts = () => {
         <div>
             <div className="flex items-center justify-center">
                 <div className="max-w-2xl w-full p-4">
-                    <h1 className="text-2xl font-bold mb-4">All Posts</h1>
+                    {/* <h1 className="text-2xl text-center font-bold mb-4">All Posts</h1> */}
                     <ul className="space-y-4">
                         {posts.map(post => (
                             <li key={post.id} className="bg-white p-4 shadow-md rounded-md">
@@ -79,10 +79,11 @@ const AllPosts = () => {
                                         className="mt-2 rounded-md"
                                     ></iframe>
                                 )}
-                                <p className="mr-2">Like Count: {post.like_count}</p>
-                                <p className="mr-2">Count: {post.comment_count_value} Comments</p>
+                                {/* <p className="mr-2">Like Count: {post.like_count}</p> */}
+                                <p className="mr-2">{post.like_count} ❤️</p>
+                                {/* <p className="mr-2">Count: {post.comment_count_value} Comments</p> */}
                                 <LikeButton postId={post.id} />
-                                <p>Id: {post.id}</p>
+                                {/* <p>Id: {post.id}</p> */}
                                 <Comments postId={post.id} />
                             </li>
                         ))}

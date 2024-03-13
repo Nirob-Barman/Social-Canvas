@@ -52,7 +52,7 @@ const LikeButton = ({ postId }) => {
             });
 
             // Check the response and handle any further actions if needed
-            console.log(response.data);
+            // console.log(response.data);
             refetch();
             // if (response.status === 200) {
             //     setIsLiked(true);
@@ -71,7 +71,7 @@ const LikeButton = ({ postId }) => {
                     Authorization: `Token ${token}`,
                 },
             });
-            console.log(response.data)
+            // console.log(response.data)
 
             if (response.status === 200) {
                 setIsLiked(false);
@@ -84,9 +84,9 @@ const LikeButton = ({ postId }) => {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 {isLiked ? "Already Liked" : "No Liked"}
-            </div>
+            </div> */}
 
             {/* <button
                 onClick={handleLike}
