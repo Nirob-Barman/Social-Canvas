@@ -17,6 +17,7 @@ import AddPost from "../Pages/DashBoard/AddPost/AddPost";
 import UserLikedPosts from "../Pages/DashBoard/UserLikedPosts/UserLikedPosts";
 import TopLikedPosts from "../Pages/DashBoard/TopLikedPosts/TopLikedPosts";
 import TopCommentedPosts from "../Pages/DashBoard/TopCommentedPosts/TopCommentedPosts";
+import AllReviews from "../Pages/Shared/AllReviews/AllReviews";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
                 path: 'updateProfile',
                 element: <UpdateUserForm />
             },
+            {
+                path: 'all-reviews',
+                element: <AllReviews />
+            }
         ]
     },
     {
