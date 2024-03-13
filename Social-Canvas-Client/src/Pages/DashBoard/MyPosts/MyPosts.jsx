@@ -85,14 +85,15 @@ const MyPosts = () => {
     return (
         <div className="container mx-auto p-4">
             <h1 className="text-3xl font-bold mb-4 text-center">My Posts</h1>
-
             {posts.map(post => (
                 <div key={post.id} className="bg-white rounded-md shadow-md mb-4 p-4">
                     <p className="text-lg font-semibold mb-2">{post.content}</p>
-                    {/* <p>Created At: {post.created_at}</p> */}
-                    {/* <p>Updated At: {post.updated_at}</p> */}
-                    <p>Like Count: {post.like_count}</p>
-                    <p>Comment Count: {post.comment_count}</p>
+                    {/* <p>Likes: {post.like_count}</p>
+                    <p>Comments: {post.comment_count_value}</p> */}
+                    <div className="flex items-center mb-2">
+                        <span className="mr-2">{post.like_count} ❤️</span>
+                        <span>{post.comment_count_value} 💬</span>
+                    </div>
                     {/* <p>{post.image}</p> */}
                     {post.image && (
                         <img src={post.image} alt="Post Image" className="mt-2 rounded-md" />
