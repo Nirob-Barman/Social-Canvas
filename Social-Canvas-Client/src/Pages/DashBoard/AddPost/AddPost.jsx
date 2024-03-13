@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const AddPost = () => {
     const [content, setContent] = useState('');
     const [image, setImage] = useState(null);
-    const [videoUrl, setVideoUrl] = useState('');
+    // const [videoUrl, setVideoUrl] = useState('');
     const navigate = useNavigate();
 
     const onSubmit = async (event) => {
@@ -17,8 +17,11 @@ const AddPost = () => {
 
             const formData = new FormData();
             formData.append('content', content);
-            formData.append('image', image);
-            formData.append('video_url', videoUrl);
+            // formData.append('image', image);
+            if (image) {
+                formData.append('image', image);
+            }
+            // formData.append('video_url', videoUrl);
 
             const response = await axios.post('https://social-canvas.onrender.com/posts/add-post/', formData, {
                 headers: {
@@ -66,7 +69,7 @@ const AddPost = () => {
 
                     <br />
 
-                    <label htmlFor="videoUrl">Video URL:</label>
+                    {/* <label htmlFor="videoUrl">Video URL:</label>
                     <input
                         type="text"
                         id="videoUrl"
@@ -75,7 +78,7 @@ const AddPost = () => {
                         placeholder='Optional'
                         onChange={(e) => setVideoUrl(e.target.value)}
                         style={{ width: '100%', marginBottom: '10px', padding: '8px', borderRadius: '4px' }}
-                    />
+                    /> */}
 
                     <button
                         type="submit"
