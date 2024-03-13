@@ -71,9 +71,8 @@ const AllReviews = () => {
                             </div>
                         </div>
 
-
                         {reviews.map((review) => (
-                            <div key={review._id} className="my-4 p-4 border rounded-lg">
+                            <div key={review.id} className="my-4 p-4 border rounded-lg">
                                 {/* Custom style for the rating component */}
                                 <Rating
                                     style={{ maxWidth: 180 }}
@@ -82,7 +81,7 @@ const AllReviews = () => {
                                     readOnly
                                     className="text-yellow-400 text-lg" // Use Tailwind CSS classes to style the rating
                                 />
-                                <p className="py-2">{review.details}</p>
+                                <p className="py-2">{review.message}</p>
                                 <h3 className="text-lg text-orange-400">{review.name}</h3>
 
 
