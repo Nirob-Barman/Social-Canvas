@@ -60,15 +60,15 @@ const SignUp = () => {
             };
 
             // Make a POST request to your Django backend
-            // const response = await axios.post('https://social-canvas.onrender.com/accounts/register/', data);
-            // const response = await axios.post('https://social-canvas.onrender.com/accounts/register/', postData);
-            const response = await axios.post('https://social-canvas.onrender.com/accounts/register/', postData, {
+            // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', data);
+            // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData);
+            const response = await axios.post('http://127.0.0.1:8000/accounts/register/', postData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
 
-            // const response = await axios.post('https://social-canvas.onrender.com/accounts/register/', {
+            // const response = await axios.post('http://127.0.0.1:8000/accounts/register/', {
             //     headers: {
             //         'Content-Type': 'multipart/form-data',
             //     },

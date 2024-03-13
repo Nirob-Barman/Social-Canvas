@@ -24,7 +24,7 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
             // console.log(typeof (postId))
 
             // const response = await axios.post(
-            //     `https://social-canvas.onrender.com/posts/comments/${postId}/`,
+            //     `https://http://127.0.0.1:8000/posts/comments/${postId}/`,
             //     // payload,
             //     JSON.stringify(payload),
             //     {
@@ -36,7 +36,7 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
             // );
 
             const response = await axios.post(
-                `https://social-canvas.onrender.com/posts/comments/${postId}/`,
+                `http://127.0.0.1:8000/posts/comments/${postId}/`,
                 payload,
                 {
                     headers: {
@@ -49,9 +49,7 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
             console.log('Response:', response);
 
             if (response.status === 201) {
-                // Comment added successfully, refresh comments
                 fetchComments();
-                // Clear the input after successful addition
                 setNewComment("");
             } else {
                 console.error('Unexpected response status:', response.status);

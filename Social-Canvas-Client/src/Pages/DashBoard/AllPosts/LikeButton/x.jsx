@@ -8,7 +8,7 @@ const LikeButton = ({ postId }) => {
     useEffect(() => {
         const checkLikeStatus = async () => {
             try {
-                const response = await axios.get(`https://social-canvas.onrender.com/posts/like/check/${postId}/`, {
+                const response = await axios.get(`http://127.0.0.1:8000/posts/like/check/${postId}/`, {
                     headers: {
                         Authorization: `Token ${token}`,
                     },
@@ -26,7 +26,7 @@ const LikeButton = ({ postId }) => {
 
     const handleLike = async () => {
         try {
-            const response = await axios.post(`https://social-canvas.onrender.com/posts/like/create/${postId}/`, {}, {
+            const response = await axios.post(`http://127.0.0.1:8000/posts/like/create/${postId}/`, {}, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },
@@ -42,7 +42,7 @@ const LikeButton = ({ postId }) => {
 
     const handleUnlike = async () => {
         try {
-            const response = await axios.delete(`https://social-canvas.onrender.com/posts/like/unlike/${postId}/`, {
+            const response = await axios.delete(`http://127.0.0.1:8000/posts/like/unlike/${postId}/`, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },

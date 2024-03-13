@@ -9,7 +9,7 @@ const AllPosts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://social-canvas.onrender.com/posts/list/', {
+                const response = await fetch('http://127.0.0.1:8000/posts/list/', {
                     headers: {
                         Authorization: `Token ${token}`,
                     },
@@ -25,7 +25,7 @@ const AllPosts = () => {
                 // Fetch like status for each post
                 const likeStatusData = {};
                 for (const post of data) {
-                    const likedResponse = await axios.get(`https://social-canvas.onrender.com/posts/like/check/${post.id}/`, {
+                    const likedResponse = await axios.get(`http://127.0.0.1:8000/posts/like/check/${post.id}/`, {
                         headers: {
                             Authorization: `Token ${token}`,
                         },
@@ -50,14 +50,14 @@ const AllPosts = () => {
 
             if (isLiked) {
                 // Unlike the post
-                await axios.post(`https://social-canvas.onrender.com/posts/like/unlike/${postId}/`, null, {
+                await axios.post(`http://127.0.0.1:8000/posts/like/unlike/${postId}/`, null, {
                     headers: {
                         Authorization: `Token ${token}`,
                     },
                 });
             } else {
                 // Like the post
-                await axios.post(`https://social-canvas.onrender.com/posts/like/create/${postId}/`, null, {
+                await axios.post(`http://127.0.0.1:8000/posts/like/create/${postId}/`, null, {
                     headers: {
                         Authorization: `Token ${token}`,
                     },

@@ -6,7 +6,7 @@ const useAllPost = () => {
     const { refetch, data: posts = [] } = useQuery({
         queryKey: ['getAllPost'],
         queryFn: async () => {
-            const res = await fetch(`https://social-canvas.onrender.com/posts/list/`, {
+            const res = await fetch(`http://127.0.0.1:8000/posts/list/`, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },
