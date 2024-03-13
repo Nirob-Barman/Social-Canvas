@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import useAllPost from '../../../../Hooks/useAllPost';
 
 const LikeButton = ({ postId }) => {
+    const [posts, refetch] = useAllPost();
     const [isLiked, setIsLiked] = useState(null);
     const token = localStorage.getItem('access-token');
 
@@ -51,6 +53,7 @@ const LikeButton = ({ postId }) => {
 
             // Check the response and handle any further actions if needed
             console.log(response.data);
+            refetch();
             // if (response.status === 200) {
             //     setIsLiked(true);
             // }
@@ -72,6 +75,7 @@ const LikeButton = ({ postId }) => {
 
             if (response.status === 200) {
                 setIsLiked(false);
+                refetch();
             }
         } catch (error) {
             console.error('Error unliking post:', error.message);
