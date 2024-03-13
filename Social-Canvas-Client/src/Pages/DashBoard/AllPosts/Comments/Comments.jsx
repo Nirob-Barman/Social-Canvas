@@ -10,7 +10,7 @@ const Comments = ({ postId }) => {
 
     const fetchComments = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/posts/comments/post/${postId}/`, {
+            const response = await axios.get(`https://social-canvas.onrender.com/posts/comments/post/${postId}/`, {
                 headers: {
                     Authorization: `Token ${token}`,
                 },

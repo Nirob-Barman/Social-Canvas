@@ -17,7 +17,7 @@ const AllPosts = () => {
     // useEffect(() => {
     //     const fetchData = async () => {
     //         try {
-    //             const response = await fetch('http://127.0.0.1:8000/posts/list/', {
+    //             const response = await fetch('https://social-canvas.onrender.com/posts/list/', {
     //                 headers: {
     //                     Authorization: `Token ${token}`,
     //                 },
@@ -39,7 +39,7 @@ const AllPosts = () => {
 
     // const handleLike = async (postId) => {
     //     try {
-    //         const response = await axios.post(`http://127.0.0.1:8000/posts/like/${postId}/`, {}, {
+    //         const response = await axios.post(`https://social-canvas.onrender.com/posts/like/${postId}/`, {}, {
     //             headers: {
     //                 Authorization: `Token ${token}`,
     //             },

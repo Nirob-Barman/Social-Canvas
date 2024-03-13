@@ -23,7 +23,7 @@ const AddPost = () => {
             }
             // formData.append('video_url', videoUrl);
 
-            const response = await axios.post('http://127.0.0.1:8000/posts/add-post/', formData, {
+            const response = await axios.post('https://social-canvas.onrender.com/posts/add-post/', formData, {
                 headers: {
                     ...headers,
                     'Content-Type': 'multipart/form-data',

@@ -9,7 +9,7 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
     // const handleAddComment = async () => {
     //     try {
     //         const response = await axios.post(
-    //             `http://127.0.0.1:8000/posts/comments/${postId}/`,
+    //             `https://social-canvas.onrender.com/posts/comments/${postId}/`,
     //             {
     //                 content: newComment,
     //             },
@@ -43,7 +43,7 @@ const AddCommentComponent = ({ postId, fetchComments }) => {
             console.log('Request Payload:', payload);
 
             const response = await axios.post(
-                `http://127.0.0.1:8000/posts/comments/${postId}/`,
+                `https://social-canvas.onrender.com/posts/comments/${postId}/`,
                 payload,
                 {
                     headers: {

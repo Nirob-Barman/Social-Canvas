@@ -20,7 +20,7 @@ const Login = () => {
             // console.log("Login successful", result.user);
             // console.log("token from onSubmit: ", token);
             // Make a POST request to your Django backend for login
-            const response = await axios.post('http://127.0.0.1:8000/accounts/login/', data);
+            const response = await axios.post('https://social-canvas.onrender.com/accounts/login/', data);
 
             // Handle the response as needed
             // console.log('Login successful:', response.data);

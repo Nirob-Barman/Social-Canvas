@@ -20,7 +20,7 @@ const AllReviews = () => {
 
     const onSubmit = async (data) => {
         try {
-            await axios.post("http://127.0.0.1:8000/reviews/add/", data);
+            await axios.post("https://social-canvas.onrender.com/reviews/add/", data);
             // console.log("Review submitted successfully:", data);
         } catch (error) {
             console.error("Error submitting review:", error);

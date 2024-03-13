@@ -15,7 +15,7 @@ const MyPosts = () => {
     //     const token = localStorage.getItem('access-token');
     //     if (token) {
     //         // Fetch the user's posts from the Django API with the Authorization header
-    //         axios.get('http://127.0.0.1:8000/posts/my-posts/', {
+    //         axios.get('https://social-canvas.onrender.com/posts/my-posts/', {
     //             headers: {
     //                 Authorization: `Token ${token}`,
     //             },
@@ -28,7 +28,7 @@ const MyPosts = () => {
     // const openEditModal = (postId) => {
     //     const token = localStorage.getItem('access-token');
     //     if (token) {
-    //         axios.get(`http://127.0.0.1:8000/posts/my-posts/update/${postId}`, {
+    //         axios.get(`https://social-canvas.onrender.com/posts/my-posts/update/${postId}`, {
     //             headers: {
     //                 Authorization: `Token ${token}`,
     //             },
@@ -60,7 +60,7 @@ const MyPosts = () => {
         const token = localStorage.getItem('access-token');
         if (token) {
             try {
-                const response = await axios.delete(`http://127.0.0.1:8000/posts/my-posts/delete/${postId}`, {
+                const response = await axios.delete(`https://social-canvas.onrender.com/posts/my-posts/delete/${postId}`, {
                     headers: { Authorization: `Token ${token}` },
                 });
 

@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
     const logOut = () => {
         setLoading(true);
         console.log('Logging out...');
-        return axios.get('http://127.0.0.1:8000/accounts/logout/')
+        return axios.get('https://social-canvas.onrender.com/accounts/logout/')
             .then(() => {
                 // After successful logout from the backend, also sign out from Firebase
                 console.log('Logged out successfully');
@@ -165,7 +165,7 @@ const AuthProvider = ({ children }) => {
 
     const updateUser = (data) => {
         setLoading(true);
-        return axios.put('http://127.0.0.1:8000/accounts/update/', data)
+        return axios.put('https://social-canvas.onrender.com/accounts/update/', data)
             .then(response => {
                 console.log('User updated successfully:', response.data);
             })
