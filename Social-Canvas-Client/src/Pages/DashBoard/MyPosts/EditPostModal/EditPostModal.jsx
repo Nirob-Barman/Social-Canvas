@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import useSelectedPost from '../../../../Hooks/useSelectedPost';
+import useMyPost from '../../../../Hooks/useMyPost';
 
 const EditPostModal = ({ selectedPost, closeModal }) => {
-    // const selectedPostId = selectedPost?.id;
-    // console.log(selectedPostId)
 
-    // const [newEditedData, refetch] = useSelectedPost(selectedPostId);
-    // console.log('newEditedData', newEditedData);
+    const [posts, refetch] = useMyPost();
 
 
     const navigate = useNavigate();
@@ -49,15 +46,14 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                 .then(response => {
                     // Handle successful update, e.g., close modal
                     console.log('Post updated successfully:', response.data);
-                    // refetch();
                     closeModal();
-
+                    refetch();
 
                     // Redirect to the desired page
                     // navigate('/posts/myPosts');
 
                     // Reload the page after successful update
-                    window.location.reload();
+                    // window.location.reload();
                 })
                 .catch(error => console.error('Error updating post:', error));
         }
