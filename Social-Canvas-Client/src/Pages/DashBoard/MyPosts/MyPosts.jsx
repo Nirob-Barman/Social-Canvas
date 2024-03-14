@@ -81,10 +81,18 @@ const MyPosts = () => {
         }
     };
 
-
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4 text-center">My Posts</h1>
+            {
+                posts.length === 0 ? (
+                    <div className="flex justify-center items-center h-[70vh]">
+                        <h2 className="text-3xl font-bold mb-4 text-center">No Posts</h2>
+                    </div>
+                )
+                    : (
+                        <h1 className="text-3xl font-bold mb-4 text-center">My Posts</h1>
+                    )
+            }
             {posts.map(post => (
                 <div key={post.id} className="bg-white rounded-md shadow-md mb-4 p-4">
                     <p className="text-lg font-semibold mb-2">{post.content}</p>

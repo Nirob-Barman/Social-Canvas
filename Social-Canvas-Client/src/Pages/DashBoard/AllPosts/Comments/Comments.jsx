@@ -6,7 +6,7 @@ import AddCommentComponent from './AddCommentComponent/AddCommentComponent';
 const Comments = ({ postId }) => {
     const token = localStorage.getItem('access-token');
     const [comments, setComments] = useState([]);
-    console.log(comments)
+    // console.log(comments)
 
     const fetchComments = async () => {
         try {

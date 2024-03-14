@@ -2,12 +2,14 @@ import React from 'react';
 import useRecentPosts from '../../../Hooks/useRecentPosts';
 
 const DashBoardPage = () => {
-    const [recentPosts, refetch] = useRecentPosts();
+    const [recentPosts] = useRecentPosts();
 
     return (
         <div className='min-h-screen'>
             <div className="mt-5">
-                <h2 className="text-xl font-semibold mb-5 text-center">Recent Posts</h2>
+                {
+                    recentPosts.length > 0 ? <h2 className="text-2xl font-bold mb-4">Recent Posts</h2> : <h2 className="text-2xl font-bold mb-4">No Posts</h2>
+                }
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {recentPosts.map(post => (
                         <div key={post.id} className="bg-white rounded-lg shadow-md p-4">
