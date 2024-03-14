@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import useAuth from '../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useSweetAlert from '../../Hooks/useSweetAlert';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -11,6 +12,8 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
+
+    const sweetAlert = useSweetAlert();
 
     const onSubmit = async (data) => {
         try {
@@ -27,6 +30,8 @@ const Login = () => {
             // console.log('Token: ', response.data.token);
 
             localStorage.setItem("access-token", response.data.token);
+
+            sweetAlert.showLoginSuccessAlert();
 
             // setToken(response.data.token);
             // console.log('Token after setToken: ', token);

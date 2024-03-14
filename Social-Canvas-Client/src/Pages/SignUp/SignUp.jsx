@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import useAuth from '../../Hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
+import useSweetAlert from '../../Hooks/useSweetAlert';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 
@@ -10,6 +11,8 @@ const SignUp = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const { createUser, logOutAfterSignUp } = useAuth();
     const navigate = useNavigate();
+
+    const sweetAlert = useSweetAlert();
 
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
@@ -77,7 +80,10 @@ const SignUp = () => {
             console.log('postData', postData)
 
             // Handle the response as needed
-            console.log('Form submitted Response:', response.data);
+            // console.log('Form submitted Response:', response.data);
+
+            sweetAlert.showUserCreatedSuccessAlert();
+
 
             logOutAfterSignUp();
             navigate('/login');
