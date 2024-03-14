@@ -93,7 +93,8 @@ const MyPosts = () => {
                         <h1 className="text-3xl font-bold mb-4 text-center">My Posts</h1>
                     )
             }
-            {posts.map(post => (
+
+            {Array.isArray(posts) && posts.map(post => (
                 <div key={post.id} className="bg-white rounded-md shadow-md mb-4 p-4">
                     <p className="text-lg font-semibold mb-2">{post.content}</p>
                     {/* <p>Likes: {post.like_count}</p>

@@ -4,7 +4,7 @@ const useRecentPosts = () => {
     const token = localStorage.getItem('access-token');
 
     const { refetch, data: recentPosts = [] } = useQuery({
-        queryKey: ['getMyPost'],
+        queryKey: ['getRecentPosts'],
         queryFn: async () => {
             const res = await fetch(`https://social-canvas.onrender.com/posts/recent-posts/`, {
                 headers: {

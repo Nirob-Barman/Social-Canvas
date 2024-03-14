@@ -60,7 +60,7 @@ const AllPosts = () => {
                 <div className="max-w-2xl w-full p-4">
                     {/* <h1 className="text-2xl text-center font-bold mb-4">All Posts</h1> */}
                     <ul className="space-y-4">
-                        {posts.map(post => (
+                        {Array.isArray(posts) && posts.map(post => (
                             <li key={post.id} className="bg-white p-4 shadow-md rounded-md">
                                 <p className="text-lg font-semibold mb-2">{post.user.first_name} {post.user.last_name}</p>
                                 <p className="">{post.content}</p>
