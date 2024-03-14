@@ -28,7 +28,6 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
         }
     }, [selectedPost]);
 
-
     const handleEdit = () => {
         const token = localStorage.getItem('access-token');
         if (token && selectedPost) {
