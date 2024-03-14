@@ -77,7 +77,7 @@ const SignUp = () => {
             //     },
             // });
 
-            console.log('postData', postData)
+            // console.log('postData', postData)
 
             // Handle the response as needed
             // console.log('Form submitted Response:', response.data);
