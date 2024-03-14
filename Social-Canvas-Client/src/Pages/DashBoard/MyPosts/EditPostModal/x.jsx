@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import useMyPost from '../../../../Hooks/useMyPost';
 
 const EditPostModal = ({ selectedPost, closeModal }) => {
+
+    const [posts, refetch] = useMyPost();
+
+
     const navigate = useNavigate();
     const [postData, setPostData] = useState(null);
     const [editedData, setEditedData] = useState({
         content: '',
-        image: null, // Change to null to represent the file
+        // image: '',
         video_url: '',
         // Add other fields as needed
     });
 
-    console.log(postData);
-    console.log(editedData);
+    // console.log(postData);
+    // console.log(editedData);
 
     useEffect(() => {
         const token = localStorage.getItem('access-token');
@@ -31,13 +36,8 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
     const handleEdit = () => {
         const token = localStorage.getItem('access-token');
         if (token && selectedPost) {
-            const formData = new FormData();
-            formData.append('content', editedData.content);
-            formData.append('image', editedData.image); // Append the file to the form data
-            formData.append('video_url', editedData.video_url);
-
             // Assuming you have an API endpoint to handle post updates
-            axios.put(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, formData, {
+            axios.put(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, editedData, {
                 headers: {
                     Authorization: `Token ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -47,26 +47,23 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                     // Handle successful update, e.g., close modal
                     console.log('Post updated successfully:', response.data);
                     closeModal();
+                    refetch();
 
                     // Redirect to the desired page
                     // navigate('/posts/myPosts');
 
                     // Reload the page after successful update
-                    window.location.reload();
+                    // window.location.reload();
                 })
                 .catch(error => console.error('Error updating post:', error));
         }
     };
 
     const handleInputChange = (e) => {
-        const { name, value, files } = e.target;
-
-        // Check if the input is a file input
-        const inputValue = name === 'image' ? files[0] : value;
-
+        const { name, value } = e.target;
         setEditedData(prevState => ({
             ...prevState,
-            [name]: inputValue,
+            [name]: value,
         }));
     };
 
@@ -95,11 +92,12 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                                 className="border rounded px-2 py-1"
                             />
 
-                            <label htmlFor="image" className="block mt-4">Image:</label>
+                            <label htmlFor="image" className="block mt-4">Image URL:</label>
                             <input
-                                type="file"
+                                type="text"
                                 id="image"
                                 name="image"
+                                value={editedData.image || postData.image || ''}
                                 onChange={handleInputChange}
                                 className="border rounded px-2 py-1"
                             />

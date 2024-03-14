@@ -6,19 +6,14 @@ import useMyPost from '../../../../Hooks/useMyPost';
 const EditPostModal = ({ selectedPost, closeModal }) => {
 
     const [posts, refetch] = useMyPost();
-
-
     const navigate = useNavigate();
     const [postData, setPostData] = useState(null);
     const [editedData, setEditedData] = useState({
         content: '',
-        // image: '',
+        image: null, // Change to accept file
         video_url: '',
         // Add other fields as needed
     });
-
-    // console.log(postData);
-    // console.log(editedData);
 
     useEffect(() => {
         const token = localStorage.getItem('access-token');
@@ -36,35 +31,43 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
     const handleEdit = () => {
         const token = localStorage.getItem('access-token');
         if (token && selectedPost) {
-            // Assuming you have an API endpoint to handle post updates
-            axios.put(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, editedData, {
+            const formData = new FormData();
+            formData.append('content', editedData.content);
+            // formData.append('video_url', editedData.video_url);
+            if (editedData.image) {
+                formData.append('image', editedData.image); // Append image file
+            }
+
+            // console.log('formData: ', formData);
+
+            axios.put(`https://social-canvas.onrender.com/posts/my-posts/update/${selectedPost.id}`, formData, {
                 headers: {
                     Authorization: `Token ${token}`,
                     'Content-Type': 'multipart/form-data',
                 },
             })
                 .then(response => {
-                    // Handle successful update, e.g., close modal
                     console.log('Post updated successfully:', response.data);
                     closeModal();
                     refetch();
-
-                    // Redirect to the desired page
-                    // navigate('/posts/myPosts');
-
-                    // Reload the page after successful update
-                    // window.location.reload();
                 })
                 .catch(error => console.error('Error updating post:', error));
         }
     };
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setEditedData(prevState => ({
-            ...prevState,
-            [name]: value,
-        }));
+        const { name, value, files } = e.target;
+        if (name === 'image') {
+            setEditedData(prevState => ({
+                ...prevState,
+                image: files[0], // Set the image file
+            }));
+        } else {
+            setEditedData(prevState => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
     };
 
     return (
@@ -92,17 +95,16 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                                 className="border rounded px-2 py-1"
                             />
 
-                            <label htmlFor="image" className="block mt-4">Image URL:</label>
+                            <label htmlFor="image" className="block mt-4">Image:</label>
                             <input
-                                type="text"
+                                type="file" // Change type to file
                                 id="image"
                                 name="image"
-                                value={editedData.image || postData.image || ''}
                                 onChange={handleInputChange}
                                 className="border rounded px-2 py-1"
                             />
 
-                            <label htmlFor="video_url" className="block mt-4">Video URL:</label>
+                            {/* <label htmlFor="video_url" className="block mt-4">Video URL:</label>
                             <input
                                 type="text"
                                 id="video_url"
@@ -110,9 +112,10 @@ const EditPostModal = ({ selectedPost, closeModal }) => {
                                 value={editedData.video_url || postData.video_url || ''}
                                 onChange={handleInputChange}
                                 className="border rounded px-2 py-1"
-                            />
+                            /> */}
 
-                            {/* Add other fields as needed */}
+                            <br />
+
                             <button
                                 onClick={handleEdit}
                                 className="bg-blue-500 text-white py-1 px-2 rounded mt-4"
