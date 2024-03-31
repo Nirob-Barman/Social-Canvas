@@ -31,7 +31,7 @@ const TopCommentedPosts = () => {
         <div className='my-10'>
             {/* <h1 className='text-5xl text-center mb-10'>Top Commented Posts</h1> */}
             <div className="mx-auto text-center md:w-4/12 my-8">
-                <h3 className="text-3xl uppercase border-y-4 py-4">Top Commented Posts</h3>
+                <h3 className="text-3xl text-center uppercase border-y-4 font-bold py-4">Top Commented Posts</h3>
             </div>
             <Swiper
                 slidesPerView={3}

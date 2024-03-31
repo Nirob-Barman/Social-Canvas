@@ -37,7 +37,7 @@ const Testimonials = () => {
     return (
         <div>
             <div className="mx-auto text-center md:w-4/12 my-10">
-                <h3 className="text-3xl uppercase border-y-4 py-4">TESTIMONIALS</h3>
+                <h3 className="text-3xl text-center uppercase border-y-4 font-bold py-4">TESTIMONIALS</h3>
             </div>
             {isLoading ? (
                 // Show loading indicator

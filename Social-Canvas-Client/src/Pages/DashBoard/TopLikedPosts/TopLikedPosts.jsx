@@ -42,7 +42,7 @@ const TopLikedPosts = () => {
                     </div> */}
 
                     <div className="mx-auto text-center md:w-4/12 my-8">
-                        <h3 className="text-3xl uppercase border-y-4 py-4">Top Liked Posts</h3>
+                        <h3 className="text-3xl text-center uppercase border-y-4 font-bold py-4">Top Liked Posts</h3>
                     </div>
 
                     <Swiper
