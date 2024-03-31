@@ -11,7 +11,7 @@ function ContactAndSupport() {
     return (
         <div className="bg-gray-100 py-10">
             <div className="max-w-4xl mx-auto px-4">
-                <h2 className="text-3xl font-bold mb-8">Contact and Support</h2>
+                <h2 className="text-3xl text-center font-bold mb-8">Contact and Support</h2>
                 <div className="flex flex-col sm:flex-row items-center justify-center">
                     <div className="bg-white p-6 rounded-lg shadow-md mb-4 sm:mb-0 sm:w-1/3 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
                         <h3 className="text-xl font-semibold mb-4">Address</h3>

@@ -43,7 +43,12 @@ function EventCalendar() {
     return (
         <div className="bg-gray-100 py-10">
             <div className="max-w-4xl mx-auto px-4">
-                <h2 className="text-3xl font-bold mb-8">Event Calendar</h2>
+                <h2 className="text-3xl text-center font-bold mb-8">Event Calendar</h2>
+
+                {/* <div className="mx-auto text-center md:w-4/12 my-8">
+                </div> */}
+                {/* <h3 className="text-3xl uppercase border-y-4 py-4">Top Liked Posts</h3> */}
+
                 <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
                     {events.map((event) => (
                         <div
