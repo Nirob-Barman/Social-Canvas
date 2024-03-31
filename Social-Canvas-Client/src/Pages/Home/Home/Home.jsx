@@ -5,6 +5,7 @@ import TopCommentedPosts from "../../DashBoard/TopCommentedPosts/TopCommentedPos
 import Testimonials from "../Testimonials/Testimonials";
 import ContactAndSupport from "../ContactAndSupport/ContactAndSupport";
 import Banner from "../Banner/Banner";
+import EventCalendar from "./EventCalendar/EventCalendar";
 
 const Home = () => {
     const { user } = useAuth();
@@ -23,6 +24,8 @@ const Home = () => {
             <TopLikedPosts />
 
             <TopCommentedPosts />
+
+            <EventCalendar />
 
             <Testimonials />
 
