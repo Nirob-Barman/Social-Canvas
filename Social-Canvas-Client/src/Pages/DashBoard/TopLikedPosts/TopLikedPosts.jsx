@@ -36,7 +36,7 @@ const TopLikedPosts = () => {
         <div>
             <div>
 
-                <div className='my-20'>
+                <div className='my-10'>
                     {/* <div>
                         <h1 className='text-5xl text-center mb-10'>Top Liked Posts</h1>
                     </div> */}

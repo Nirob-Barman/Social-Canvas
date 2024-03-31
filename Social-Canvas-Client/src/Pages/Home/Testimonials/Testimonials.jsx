@@ -36,7 +36,7 @@ const Testimonials = () => {
 
     return (
         <div>
-            <div className="mx-auto text-center md:w-4/12 my-8">
+            <div className="mx-auto text-center md:w-4/12 my-10">
                 <h3 className="text-3xl uppercase border-y-4 py-4">TESTIMONIALS</h3>
             </div>
             {isLoading ? (
@@ -63,7 +63,7 @@ const Testimonials = () => {
                         {visibleReviews < sortedReviews.length && (
                             <Link to='all-reviews'>
                                 <button
-                                    className="bg-blue-500 text-white font-bold py-2 px-4 mb-8 rounded mt-4"
+                                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4"
                                     onClick={loadMoreReviews}
                                 >
                                     Load More Reviews

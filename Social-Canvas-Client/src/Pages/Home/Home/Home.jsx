@@ -17,19 +17,21 @@ const Home = () => {
                 <title>Phi Book | Home</title>
             </Helmet>
 
-            <Banner />
-
             {/* Hello {user?.email} */}
 
-            <TopLikedPosts />
+            <div className="bg-gray-100 ">
+                <Banner />
 
-            <TopCommentedPosts />
+                <TopLikedPosts />
 
-            <EventCalendar />
+                <TopCommentedPosts />
 
-            <Testimonials />
+                <EventCalendar />
 
-            <ContactAndSupport />
+                <Testimonials />
+
+                <ContactAndSupport />
+            </div>
 
         </div>
     );

@@ -9,7 +9,7 @@ function ContactAndSupport() {
     };
 
     return (
-        <div className="bg-gray-100 py-10">
+        <div className="bg-gray-100 my-10">
             <div className="max-w-4xl mx-auto px-4">
                 <h2 className="text-3xl text-center font-bold mb-8">Contact and Support</h2>
                 <div className="flex flex-col sm:flex-row items-center justify-center">
