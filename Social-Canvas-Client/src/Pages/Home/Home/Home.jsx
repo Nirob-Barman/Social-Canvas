@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import TopLikedPosts from "../../DashBoard/TopLikedPosts/TopLikedPosts";
 import TopCommentedPosts from "../../DashBoard/TopCommentedPosts/TopCommentedPosts";
 import Testimonials from "../Testimonials/Testimonials";
+import ContactAndSupport from "../ContactAndSupport/ContactAndSupport";
 
 const Home = () => {
     const { user } = useAuth();
@@ -21,6 +22,8 @@ const Home = () => {
             <TopCommentedPosts />
 
             <Testimonials />
+
+            <ContactAndSupport />
 
         </div>
     );
