@@ -19,7 +19,6 @@ const SignUp = () => {
     // Add a state to store the uploaded image URL
     const [imageUrl, setImageUrl] = useState('');
 
-
     // Function to handle image upload to ImgBB
     const handleImageUpload = async (e) => {
         try {
@@ -102,140 +101,142 @@ const SignUp = () => {
             <div className="bg-white p-8 rounded shadow-md w-3/4">
                 <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
                 <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-                    <div className="mb-4">
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-600">
-                            Username
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            {...register('username', { required: 'Username is required' })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.username ? 'border-red-500' : ''}`}
-                        />
-                        {errors.username && <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>}
-                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="mb-4">
+                            <label htmlFor="username" className="block text-sm font-medium text-gray-600">
+                                Username
+                            </label>
+                            <input
+                                type="text"
+                                id="username"
+                                {...register('username', { required: 'Username is required' })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.username ? 'border-red-500' : ''}`}
+                            />
+                            {errors.username && <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            {...register('email', {
-                                required: 'Email is required',
-                                pattern: {
-                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                    message: 'Invalid email address',
-                                },
-                            })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.email ? 'border-red-500' : ''}`}
-                        />
-                        {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-                    </div>
+                        <div className="mb-4">
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+                                Email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                {...register('email', {
+                                    required: 'Email is required',
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: 'Invalid email address',
+                                    },
+                                })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.email ? 'border-red-500' : ''}`}
+                            />
+                            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="first_name" className="block text-sm font-medium text-gray-600">
-                            First Name
-                        </label>
-                        <input
-                            type="text"
-                            id="first_name"
-                            {...register('first_name', { required: 'First Name is required' })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.first_name ? 'border-red-500' : ''}`}
-                        />
-                        {errors.first_name && <p className="text-red-500 text-xs mt-1">{errors.first_name.message}</p>}
-                    </div>
+                        <div className="mb-4">
+                            <label htmlFor="first_name" className="block text-sm font-medium text-gray-600">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="first_name"
+                                {...register('first_name', { required: 'First Name is required' })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.first_name ? 'border-red-500' : ''}`}
+                            />
+                            {errors.first_name && <p className="text-red-500 text-xs mt-1">{errors.first_name.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="last_name" className="block text-sm font-medium text-gray-600">
-                            Last Name
-                        </label>
-                        <input
-                            type="text"
-                            id="last_name"
-                            {...register('last_name', { required: 'Last Name is required' })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.last_name ? 'border-red-500' : ''}`}
-                        />
-                        {errors.last_name && <p className="text-red-500 text-xs mt-1">{errors.last_name.message}</p>}
-                    </div>
+                        <div className="mb-4">
+                            <label htmlFor="last_name" className="block text-sm font-medium text-gray-600">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="last_name"
+                                {...register('last_name', { required: 'Last Name is required' })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.last_name ? 'border-red-500' : ''}`}
+                            />
+                            {errors.last_name && <p className="text-red-500 text-xs mt-1">{errors.last_name.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-600">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            {...register('password', {
-                                required: 'Password is required',
-                                minLength: {
-                                    value: 6,
-                                    message: 'Password must be at least 6 characters long',
-                                },
-                            })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.password ? 'border-red-500' : ''}`}
-                        />
-                        {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
-                    </div>
+                        <div className="mb-4">
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+                                Password
+                            </label>
+                            <input
+                                type="password"
+                                id="password"
+                                {...register('password', {
+                                    required: 'Password is required',
+                                    minLength: {
+                                        value: 6,
+                                        message: 'Password must be at least 6 characters long',
+                                    },
+                                })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.password ? 'border-red-500' : ''}`}
+                            />
+                            {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="confirm_password" className="block text-sm font-medium text-gray-600">
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            id="confirm_password"
-                            {...register('confirm_password', {
-                                required: 'Confirm Password is required',
-                                validate: (value) => value === watch('password') || 'Passwords do not match',
-                            })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.confirm_password ? 'border-red-500' : ''}`}
-                        />
-                        {errors.confirm_password && <p className="text-red-500 text-xs mt-1">{errors.confirm_password.message}</p>}
-                    </div>
+                        <div className="mb-4">
+                            <label htmlFor="confirm_password" className="block text-sm font-medium text-gray-600">
+                                Confirm Password
+                            </label>
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                {...register('confirm_password', {
+                                    required: 'Confirm Password is required',
+                                    validate: (value) => value === watch('password') || 'Passwords do not match',
+                                })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.confirm_password ? 'border-red-500' : ''}`}
+                            />
+                            {errors.confirm_password && <p className="text-red-500 text-xs mt-1">{errors.confirm_password.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="birth_date" className="block text-sm font-medium text-gray-600">
-                            Birth Date
-                        </label>
-                        <input
-                            type="date"
-                            id="birth_date"
-                            {...register('birth_date', { required: 'Birth Date is required' })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.birth_date ? 'border-red-500' : ''}`}
-                        />
-                        {errors.birth_date && <p className="text-red-500 text-xs mt-1">{errors.birth_date.message}</p>}
-                    </div>
+                        <div className="mb-4">
+                            <label htmlFor="birth_date" className="block text-sm font-medium text-gray-600">
+                                Birth Date
+                            </label>
+                            <input
+                                type="date"
+                                id="birth_date"
+                                {...register('birth_date', { required: 'Birth Date is required' })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.birth_date ? 'border-red-500' : ''}`}
+                            />
+                            {errors.birth_date && <p className="text-red-500 text-xs mt-1">{errors.birth_date.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="gender" className="block text-sm font-medium text-gray-600">
-                            Gender
-                        </label>
-                        <select
-                            id="gender"
-                            {...register('gender', { required: 'Gender is required' })}
-                            className={`mt-1 p-2 w-full border rounded ${errors.gender ? 'border-red-500' : ''}`}
-                        >
-                            <option value="" disabled>Select your gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender.message}</p>}
-                    </div>
+                        <div className="mb-4">
+                            <label htmlFor="gender" className="block text-sm font-medium text-gray-600">
+                                Gender
+                            </label>
+                            <select
+                                id="gender"
+                                {...register('gender', { required: 'Gender is required' })}
+                                className={`mt-1 p-2 w-full border rounded ${errors.gender ? 'border-red-500' : ''}`}
+                            >
+                                <option value="" disabled>Select your gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender.message}</p>}
+                        </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="profile_pic" className="block text-sm font-medium text-gray-600">
-                            Profile Picture
-                        </label>
-                        <input
-                            type="file"
-                            id="profile_pic"
-                            {...register('profile_pic')}
-                            // onChange={handleImageUpload}  // Handle image upload
-                            className={`mt-1 p-2 w-full border rounded ${errors.profile_pic ? 'border-red-500' : ''}`}
-                        />
-                        {errors.profile_pic && <p className="text-red-500 text-xs mt-1">{errors.profile_pic.message}</p>}
+                        <div className="mb-4">
+                            <label htmlFor="profile_pic" className="block text-sm font-medium text-gray-600">
+                                Profile Picture
+                            </label>
+                            <input
+                                type="file"
+                                id="profile_pic"
+                                {...register('profile_pic')}
+                                // onChange={handleImageUpload}  // Handle image upload
+                                className={`mt-1 p-2 w-full border rounded ${errors.profile_pic ? 'border-red-500' : ''}`}
+                            />
+                            {errors.profile_pic && <p className="text-red-500 text-xs mt-1">{errors.profile_pic.message}</p>}
+                        </div>
                     </div>
 
                     <button
