@@ -41,7 +41,7 @@ function EventCalendar() {
     ];
 
     return (
-        <div className="bg-gray-100 my-10">
+        <div className="my-10">
 
             <div className="mx-auto text-center md:w-4/12 my-10">
                 <h2 className="text-3xl text-center uppercase border-y-4 font-bold py-4">Event Calendar</h2>
